@@ -1,7 +1,7 @@
-repository: {SergiJulia94}/{topological_mott_insulator}
+repository: SergiJulia94/topological_mott_insulator
 output: web
-topnav_title: {topological_mott_insulator}
-site_title: {topological_mott_insulator}
+topnav_title: topological_mott_insulator
+site_title: topological_mott_insulator
 company_name: ICFO
 description: A Hartree-Fock toolbox for the Topological Mott Insulator in the checkerboard lattice
 # Set to false to disable KaTeX math
