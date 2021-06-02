@@ -1,15 +1,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.collections import LineCollection
-import os
-os.environ["OMP_NUM_THREADS"] = "18"
-import numpy as np
-
-from tqdm import tqdm 
 from matplotlib import pyplot as plt
 from matplotlib.collections import LineCollection
-import pickle
-import time
 import matplotlib.colors as colors
 import matplotlib as mpl
 from scipy.interpolate import interp1d
@@ -17,8 +10,6 @@ from matplotlib.collections import LineCollection
 import matplotlib.gridspec as gridspec
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
-
-
 
 def plot_bonds(vecpos, J_, mf_):
     segment = []
