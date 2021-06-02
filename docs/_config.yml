@@ -1,4 +1,4 @@
-repository: SergiJulia94/topological_mott_insulator/docs
+repository: SergiJulia94/topological_mott_insulator
 output: web
 topnav_title: topological_mott_insulator
 site_title: topological_mott_insulator
@@ -58,7 +58,9 @@ defaults:
 
 sidebars:
 - home_sidebar
-permalink: pretty
 
-theme: jekyll-theme-cayman
-baseurl: /topological_mott_insulator/docs/
+plugins:
+    - jekyll-remote-theme
+    
+remote_theme: fastai/nbdev-jekyll-theme
+baseurl: /topological_mott_insulator/
