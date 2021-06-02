@@ -14,9 +14,9 @@ This file will become your README and also the index of your documentation.
 Fill me in please! Don't forget code examples:
 
 ```python
-nx, ny = 24, 24
+nx, ny = 8, 8
 stagg_m = 0
-cf = (nx*ny+5)/(nx*ny)
+cf = (nx*ny)/(nx*ny)
 t0=-1
 jax, jay, jbx, jby = +0.5, -0.5, -0.5, +0.5
 phix, phiy = 0., 0.
@@ -29,29 +29,17 @@ re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=-1,jax=+0.5, jay=-0.5,
 		                        jbx=-0.5, jby=+0.5, v1=2.5, v2=1.5,  
 		                        beta=100000, cell_filling=cf)
 
-for i1 in tqdm(range(0,1000)):
+for i1 in tqdm(range(0,200)):
         un_mf.iterate_mf(eta=0.6)
         re_mf.iterate_mf()
 
-for i1 in tqdm(range(0,1000)):
+for i1 in tqdm(range(0,200)):
         un_mf.iterate_mf(eta=1.)
         re_mf.iterate_mf()
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-1-283ace9b8665> in <module>
-          6 phix, phiy = 0., 0.
-          7 
-    ----> 8 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=+0.5, jay=-0.5, 
-          9                                         jbx=-0.5, jby=+0.5, v1=2.5, v2=1.5,
-         10 		                        beta=100000, cell_filling=cf, phix=0., phiy=0.)
-
-
-    NameError: name 'checkerboard_lattice_un' is not defined
+    100%|██████████| 200/200 [00:08<00:00, 22.89it/s]
+    100%|██████████| 200/200 [00:08<00:00, 23.27it/s]
 
 
 ```python
@@ -78,6 +66,10 @@ ax.set_aspect('equal')
 plt.title(r'$\xi_{AB}^I(j)$')
 plt.show()
 ```
+
+
+![png](docs/images/output_6_0.png)
+
 
 ```python
 fig  = plt.figure()
@@ -123,6 +115,10 @@ plt.title(r'$\xi_{AB}^I(j)$')
 plt.show()
 ```
 
+
+![png](docs/images/output_7_0.png)
+
+
 ```python
 fig  = plt.figure()
 gs0 = gridspec.GridSpec(1, 1, left=0.12, right=0.75, top=1., bottom=0., wspace=0)
@@ -143,3 +139,7 @@ cb1 = fig.colorbar(sc, cax=cbar, orientation='vertical')
 plt.title(r'$n(j)$')
 plt.show()
 ```
+
+
+![png](docs/images/output_8_0.png)
+
