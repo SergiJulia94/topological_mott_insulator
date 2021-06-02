@@ -29,18 +29,14 @@ re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=-1,jax=+0.5, jay=-0.5,
 		                        jbx=-0.5, jby=+0.5, v1=2.5, v2=1.5,  
 		                        beta=100000, cell_filling=cf)
 
-for i1 in tqdm(range(0,200)):
+for i1 in (range(0,200)):
         un_mf.iterate_mf(eta=0.6)
         re_mf.iterate_mf()
 
-for i1 in tqdm(range(0,200)):
+for i1 in (range(0,200)):
         un_mf.iterate_mf(eta=1.)
         re_mf.iterate_mf()
 ```
-
-    100%|██████████| 200/200 [00:08<00:00, 22.89it/s]
-    100%|██████████| 200/200 [00:08<00:00, 23.27it/s]
-
 
 ```
 un_mf_aux = un_mf
@@ -68,7 +64,23 @@ plt.show()
 ```
 
 
-![png](docs/images/output_6_0.png)
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-14-31b6c053c4b9> in <module>
+          5 ax = fig.add_subplot(gs00[0])
+          6 
+    ----> 7 segment, color, mini, maxi = tools.plot_bonds(un_mf_aux.pos, un_mf_aux.J_nn, np.imag(un_mf_aux.mfhop_nn))
+          8 ligne = LineCollection(segment,linestyles='solid',
+          9                                 cmap=plt.get_cmap('RdBu'),
+
+
+    NameError: name 'np' is not defined
+
+
+
+![png](docs/images/output_6_1.png)
 
 
 ```
