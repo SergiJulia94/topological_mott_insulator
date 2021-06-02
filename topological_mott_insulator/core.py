@@ -3,31 +3,6 @@
 __all__ = ['checkerboard_lattice_un', 'checkerboard_lattice_4unitcell', 'numbern', 'chern']
 
 # Cell
-# default_exp core
-#export
-import numpy as np
-from nbdev.showdoc import show_doc
-from nbdev.showdoc import *
-import os
-os.environ["OMP_NUM_THREADS"] = "18"
-import checkerboard_lattice_plots as tools
-from tqdm import tqdm
-from matplotlib import pyplot as plt
-from matplotlib import transforms
-from matplotlib.collections import LineCollection
-import pickle
-import time
-import matplotlib.colors as colors
-import matplotlib as mpl
-from scipy.interpolate import interp1d
-from matplotlib.collections import LineCollection
-from matplotlib.colors import LinearSegmentedColormap
-import matplotlib.gridspec as gridspec
-from scipy.optimize import brentq,newton
-plt.rc('text', usetex=True)
-plt.rc('font', family='serif')
-
-# Cell
 class checkerboard_lattice_un:
     "Unrestricted Hartree-Fock class to solve self-consistently the system Hamiltonian"
     def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, beta, cell_filling, phix, phiy):
