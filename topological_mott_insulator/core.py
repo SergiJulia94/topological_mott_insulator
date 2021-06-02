@@ -17,8 +17,6 @@ from matplotlib.collections import LineCollection
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.gridspec as gridspec
 from scipy.optimize import brentq,newton
-plt.rc('text', usetex=True)
-plt.rc('font', family='serif')
 
 # Cell
 class checkerboard_lattice_un:

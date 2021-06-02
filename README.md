@@ -64,23 +64,7 @@ plt.show()
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-14-31b6c053c4b9> in <module>
-          5 ax = fig.add_subplot(gs00[0])
-          6 
-    ----> 7 segment, color, mini, maxi = tools.plot_bonds(un_mf_aux.pos, un_mf_aux.J_nn, np.imag(un_mf_aux.mfhop_nn))
-          8 ligne = LineCollection(segment,linestyles='solid',
-          9                                 cmap=plt.get_cmap('RdBu'),
-
-
-    NameError: name 'np' is not defined
-
-
-
-![png](docs/images/output_6_1.png)
+![png](docs/images/output_6_0.png)
 
 
 ```

@@ -8,8 +8,7 @@ import matplotlib as mpl
 from scipy.interpolate import interp1d
 from matplotlib.collections import LineCollection
 import matplotlib.gridspec as gridspec
-plt.rc('text', usetex=True)
-plt.rc('font', family='serif')
+
 
 def plot_bonds(vecpos, J_, mf_):
     segment = []
