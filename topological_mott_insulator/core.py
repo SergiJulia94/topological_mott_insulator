@@ -28,7 +28,7 @@ class checkerboard_lattice_un:
         ----------
         nx, ny : int
             Number of unit cells in the x and y direction.
-        t0, jax, jay, jbx, jby, v1, v2: float
+        `t0`, `jax`, jay, jbx, jby, v1, v2: float
             Parameters of the Hamiltonian
         beta : float
             Inverse temperature.
