@@ -20,9 +20,9 @@ from scipy.optimize import brentq,newton
 class checkerboard_lattice_un:
     """Unrestricted Hartree-Fock class to solve self-consistently the system Hamiltonian``.
 
-        H = -t0\sum_<ij>(Ci^tCj + h.c.)+jax\sum_<<ij>>{_ax}(Ci^tCj + h.c.)+
-        +jay\sum_<<ij>>{_ay}(Ci^tCj + h.c.) +jbx\sum_<<ij>>{_bx}(Ci^tCj + h.c.) +jby\sum_<<ij>>{_by}(Ci^tCj + h.c.)
-        +v1\sum_<ij>NiNj+v2\sum_<<ij>>NiNj
+        $$H = -t0\sum_{<ij>}(c_i^\dagger c_j + H.c.)+jax\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.)
+        +jay\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)+jbx\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +jby\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.)
+        +v1\sum_<ij>n_in_j+v2\sum_{<<ij>>}n_in_j$$
 
         Parameters
         ----------
@@ -58,7 +58,7 @@ class checkerboard_lattice_un:
         energies_fermi: array of float
             Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm.
         total_energy: float
-            Expectation value of the Hamiltonian in the current state of the algorithm.
+            Expectation value of the Hamiltonian per unit cell in the current state of the algorithm.
         states: array of arrays of float
             Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to energies.
         states_fermi: array of arrays of float

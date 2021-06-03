@@ -50,10 +50,9 @@ nb_path: "00_core.ipynb"
 <h2 id="checkerboard_lattice_un" class="doc_header"><code>class</code> <code>checkerboard_lattice_un</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/core.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>checkerboard_lattice_un</code>(<strong><code>nx</code></strong>, <strong><code>ny</code></strong>, <strong><code>t0</code></strong>, <strong><code>jax</code></strong>, <strong><code>jay</code></strong>, <strong><code>jbx</code></strong>, <strong><code>jby</code></strong>, <strong><code>v1</code></strong>, <strong><code>v2</code></strong>, <strong><code>beta</code></strong>, <strong><code>cell_filling</code></strong>, <strong><code>phix</code></strong>, <strong><code>phiy</code></strong>)</p>
 </blockquote>
 <p>Unrestricted Hartree-Fock class to solve self-consistently the system Hamiltonian``.</p>
-<p>H = -t0\sum<em><ij>(Ci^tCj + h.c.)+jax\sum</em>&lt;<ij>&gt;{<em>ax}(Ci^tCj + h.c.)+
-+jay\sum</em>&lt;<ij>&gt;{<em>ay}(Ci^tCj + h.c.) +jbx\sum</em>&lt;<ij>&gt;{<em>bx}(Ci^tCj + h.c.) +jby\sum</em>&lt;<ij>&gt;{<em>by}(Ci^tCj + h.c.)
-+v1\sum</em><ij>NiNj+v2\sum_&lt;<ij>&gt;NiNj</p>
-<h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2><p>nx, ny : int
+$$H = -t0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+jax\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.)
++jay\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)+jbx\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +jby\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.)
++v1\sum_&lt;ij&gt;n_in_j+v2\sum_{&lt;&lt;ij&gt;&gt;}n_in_j$$<h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2><p>nx, ny : int
     Number of unit cells in the x and y direction.
 <code>t0</code>, <code>jax</code>, jay, jbx, jby, v1, v2: float
     Parameters of the Hamiltonian
@@ -81,7 +80,7 @@ energies: array of float
 energies_fermi: array of float
     Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm.
 total_energy: float
-    Expectation value of the Hamiltonian in the current state of the algorithm.
+    Expectation value of the Hamiltonian per unit cell in the current state of the algorithm.
 states: array of arrays of float
     Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to energies.
 states_fermi: array of arrays of float
