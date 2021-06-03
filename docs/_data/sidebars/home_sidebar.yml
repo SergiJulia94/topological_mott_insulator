@@ -10,7 +10,7 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: 'Unrestricted Hartree-Fock '
+      title: Auxiliary functions
       url: core.html
     output: web
     title: topological_mott_insulator

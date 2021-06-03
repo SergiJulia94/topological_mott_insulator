@@ -13,7 +13,7 @@ This file will become your README and also the index of your documentation.
 
 Perform a simple self-consistent algorithm to compare unrestricted and restricted Hartree-Fock results
 
-```python
+```
 nx, ny = 8, 8
 stagg_m = 0
 cf = (nx*ny)/(nx*ny)
@@ -38,7 +38,7 @@ for i1 in (range(0,200)):
         re_mf.iterate_mf()
 ```
 
-```python
+```
 un_mf_aux = un_mf
 fig  = plt.figure()
 gs0 = gridspec.GridSpec(1, 1, left=0.12, right=0.75, top=1., bottom=0., wspace=0)
@@ -67,7 +67,7 @@ plt.show()
 ![png](docs/images/output_6_0.png)
 
 
-```python
+```
 fig  = plt.figure()
 gs0 = gridspec.GridSpec(1, 1, left=0.12, right=0.75, top=1., bottom=0., wspace=0)
 gs00 = gridspec.GridSpecFromSubplotSpec(1, 1, subplot_spec=gs0[0], hspace=0., wspace=0.)
@@ -115,7 +115,7 @@ plt.show()
 ![png](docs/images/output_7_0.png)
 
 
-```python
+```
 fig  = plt.figure()
 gs0 = gridspec.GridSpec(1, 1, left=0.12, right=0.75, top=1., bottom=0., wspace=0)
 gs00 = gridspec.GridSpecFromSubplotSpec(1, 1, subplot_spec=gs0[0], hspace=0., wspace=0.)
