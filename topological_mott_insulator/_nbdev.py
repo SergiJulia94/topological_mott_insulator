@@ -3,11 +3,13 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"checkerboard_lattice_un": "00_core.ipynb",
-         "checkerboard_lattice_4unitcell": "00_core.ipynb",
-         "numbern": "00_core.ipynb",
-         "chern": "00_core.ipynb"}
+         "numbern": "02_core.ipynb",
+         "chern": "02_core.ipynb",
+         "checkerboard_lattice_4unitcell": "01_core.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "core1.py",
+           "core2.py"]
 
 doc_url = "https://SergiJulia94.github.io/topological_mott_insulator/"
 
