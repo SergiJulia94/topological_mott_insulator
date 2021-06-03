@@ -73,8 +73,8 @@ ligne = LineCollection(segment,linestyles='solid',
                                 array=color, norm=plt.Normalize(mini, maxi),
                                 linewidths=8, rasterized=True)
  
-ax.set_xlim(-1,2*un_mf_aux.nx)
-ax.set_ylim(-1,2*un_mf_aux.ny)
+ax.set_xlim(-1,2*un_mf.nx)
+ax.set_ylim(-1,2*un_mf.ny)
 ax.add_collection(ligne)
 ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$y$')
