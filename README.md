@@ -13,52 +13,33 @@
 
 Perform a simple self-consistent algorithm to compare unrestricted and restricted Hartree-Fock results
 
-```python
-nx, ny = 8, 8
+```
+nx, ny = 20, 6
 t0 = -1
 jax, jay, jbx, jby = 0.5, -0.5, -0.5, 0.5
 v1, v2 = 2.5, 1.5
-stagg_m = 0
 cf = (nx*ny)/(nx*ny)
-t0=-1
-jax, jay, jbx, jby = +0.5, -0.5, -0.5, +0.5
 phix, phiy = 0., 0.
 beta = 1E+5
 
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False)
+		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=True, field=0.01*1j, induce='nothing', border=True)
 
 re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=t0,jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2,  
 		                        beta=beta, cell_filling=cf)
 
-for i1 in (range(0,200)):
+for i1 in (range(0,400)):
         un_mf.iterate_mf(eta=0.6)
         re_mf.iterate_mf()
 
-for i1 in (range(0,200)):
+for i1 in (range(0,400)):
         un_mf.iterate_mf(eta=1.)
         re_mf.iterate_mf()
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-19-2ca753813b3a> in <module>
-         12 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
-         13                                         jbx=jbx, jby=jby, v1=v1, v2=v2,
-    ---> 14 		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False)
-         15 
-         16 re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=t0,jax=jax, jay=jay, 
-
-
-    TypeError: __init__() got an unexpected keyword argument 'cylinder'
-
-
-```python
+```
 fig  = plt.figure()
 ax = fig.add_subplot()
 sc = ax.scatter(un_mf.pos[:,0].flatten(),
@@ -69,7 +50,7 @@ ax.set_xlim(-1,2*un_mf.nx)
 ax.set_ylim(-1,2*un_mf.ny)
 ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$y$')
-
+ax.set_aspect('equal')
 fig.colorbar(sc)
 plt.title(r'$n(j)$')
 plt.show()
@@ -79,7 +60,7 @@ plt.show()
 ![png](docs/images/output_6_0.png)
 
 
-```python
+```
 fig  = plt.figure()
 ax = fig.add_subplot()
 
@@ -104,34 +85,36 @@ plt.show()
 ![png](docs/images/output_7_0.png)
 
 
-```python
+```
 fig  = plt.figure()
 ax = fig.add_subplot()
 
-segment, color, mini, maxi = tools.plot_bonds(un_mf.pos, un_mf.J_ax, np.imag(un_mf.mfhop_ax))
+aux = np.concatenate((np.imag(un_mf.mfhop_ax), np.imag(un_mf.mfhop_ay), np.imag(un_mf.mfhop_bx), np.imag(un_mf.mfhop_ax)))
+maxi = np.amax(np.abs(aux))
+segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_ax, np.imag(un_mf.mfhop_ax))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
-                                array=color, norm=plt.Normalize(mini, maxi),
+                                array=color, norm=plt.Normalize(-maxi, maxi),
                                 linewidths=5, rasterized=True)
 ax.add_collection(ligne)
-segment, color, mini, maxi = tools.plot_bonds(un_mf.pos, un_mf.J_ay, -np.imag(un_mf.mfhop_ay))
+segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_ay, -np.imag(un_mf.mfhop_ay))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
-                                array=color, norm=plt.Normalize(mini, maxi),
-                                linewidths=5, rasterized=True)
-ax.add_collection(ligne)
-
-segment, color, mini, maxi = tools.plot_bonds(un_mf.pos, un_mf.J_bx, -np.imag(un_mf.mfhop_bx))
-ligne = LineCollection(segment,linestyles='solid',
-                                cmap=plt.get_cmap('RdBu'),
-                                array=color, norm=plt.Normalize(mini, maxi),
+                                array=color, norm=plt.Normalize(-maxi, maxi),
                                 linewidths=5, rasterized=True)
 ax.add_collection(ligne)
 
-segment, color, mini, maxi = tools.plot_bonds(un_mf.pos, un_mf.J_by, np.imag(un_mf.mfhop_by))
+segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_bx, -np.imag(un_mf.mfhop_bx))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
-                                array=color, norm=plt.Normalize(mini, maxi),
+                                array=color, norm=plt.Normalize(-maxi, maxi),
+                                linewidths=5, rasterized=True)
+ax.add_collection(ligne)
+
+segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_by, np.imag(un_mf.mfhop_by))
+ligne = LineCollection(segment,linestyles='solid',
+                                cmap=plt.get_cmap('RdBu'),
+                                array=color, norm=plt.Normalize(-maxi, maxi),
                                 linewidths=5, rasterized=True)
 ax.add_collection(ligne)
 
@@ -139,6 +122,7 @@ ax.set_xlim(-1,2*un_mf.nx)
 ax.set_ylim(-1,2*un_mf.ny)
 ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$y$')
+ax.set_ylim()
 fig.colorbar(ligne)
 ax.set_aspect('equal')
 plt.title(r'$\xi_{AA/BB}^I(j)$')
@@ -147,4 +131,21 @@ plt.show()
 
 
 ![png](docs/images/output_8_0.png)
+
+
+```
+plt.plot(un_mf.energies,'.')
+plt.plot(un_mf.energies_fermi,'.')
+
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x1214b1f90>]
+
+
+
+
+![png](docs/images/output_9_1.png)
 

@@ -88,7 +88,7 @@ class checkerboard_lattice_un:
 
 
 
-    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, beta, cell_filling, phix, phiy, cylinder):
+    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, beta, cell_filling, phix, phiy, cylinder, field, induce, border):
         self.tre = 1E-10
         self.iterations = int(0)
         self.etas = np.array([])
@@ -104,6 +104,7 @@ class checkerboard_lattice_un:
         self.jby = jby
         self.v1  = v1
         self.v2  = v2
+        self.V = np.zeros(self.L_sites)
         self.beta = beta
         self.phix = phix
         self.phiy = phiy
@@ -116,6 +117,7 @@ class checkerboard_lattice_un:
         self.states = np.array([])
         self.states_fermi = np.array([])
         self.cylinder = cylinder
+        self.field = field
         self.J_nn = None
         self.J_nn_1 = None
         self.J_nn_2 = None
@@ -128,6 +130,9 @@ class checkerboard_lattice_un:
         self.J_nn_2_tw = None
         self.flux_nn_1 = None
         self.flux_nn_2 = None
+        self.domain_sign_1 = None
+        self.domain_sign_2 = None
+        self.induce = induce
         self.J_ax_tw = None
         self.J_ay_tw = None
         self.J_bx_tw = None
@@ -147,6 +152,7 @@ class checkerboard_lattice_un:
         self.pos = None
         self.posA = None
         self.posB = None
+        self.border_potential = border
         self.lattice_positions()
         self.set_hoppings()
         self.set_initcond()
@@ -168,8 +174,27 @@ class checkerboard_lattice_un:
         self.mfhop_ay_0 = np.copy(self.mfhop_ay)
         self.mfhop_bx_0 = np.copy(self.mfhop_bx)
         self.mfhop_by_0 = np.copy(self.mfhop_by)
+        if self.induce == 'domains':
+            self.domain_sign_1 = np.where(self.pos[self.J_nn_1[:,0],0]<self.nx , 1, -1)
+            self.domain_sign_2 = np.where(self.pos[self.J_nn_2[:,0],0]<self.nx , 1, -1)
 
+        elif self.induce == 'polaron':
+            self.domain_sign_1 = np.where((self.pos[self.J_nn_1[:,0],0]>self.nx) & (self.pos[self.J_nn_1[:,0],0]<self.nx+4) & (self.pos[self.J_nn_1[:,0],1]>4)  & (self.pos[self.J_nn_1[:,0],1]<8), -1, 1)
+            self.domain_sign_2 = np.where((self.pos[self.J_nn_2[:,0],0]>self.nx) & (self.pos[self.J_nn_2[:,0],0]<self.nx+4) & (self.pos[self.J_nn_2[:,0],1]>4)  & (self.pos[self.J_nn_2[:,0],1]<8), -1, 1)
 
+        elif self.induce == '3domains':
+            self.domain_sign_1 = np.where((self.pos[self.J_nn_1[:,0],0]<2*self.nx*0.25) | (self.pos[self.J_nn_1[:,0],0]>2*self.nx*0.75), -1, 1)
+            self.domain_sign_2 = np.where((self.pos[self.J_nn_2[:,0],0]<2*self.nx*0.25) | (self.pos[self.J_nn_2[:,0],0]>2*self.nx*0.75), -1, 1)
+
+        elif self.induce == 'nothing':
+            self.domain_sign_1 = np.where((self.pos[self.J_nn_1[:,0],0]<2*self.nx*0.25) | (self.pos[self.J_nn_1[:,0],0]>2*self.nx*0.75), 1, 1)
+            self.domain_sign_2 = np.where((self.pos[self.J_nn_2[:,0],0]<2*self.nx*0.25) | (self.pos[self.J_nn_2[:,0],0]>2*self.nx*0.75), 1, 1)
+        if(self.border_potential == True):
+            for i1 in range(0, self.L_sites):
+                if(self.pos[i1,0]==0 or self.pos[i1,0]==2*self.nx-1):
+                    self.V[i1]= self.v1 + 0.5*self.v2
+                if(self.pos[i1,0]==1 or self.pos[i1,0]==2*self.nx-2):
+                    self.V[i1]= 0.5*self.v2
 
     def lattice_positions(self):
         x_, y_ = np.arange(0, self.nx, dtype=float), np.arange(0, 2*self.ny, dtype=float)
@@ -204,7 +229,7 @@ class checkerboard_lattice_un:
                     if iy == 2*self.ny-1:
                         J[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
                     if ix == self.nx-1:
-                        if cylinder == False:
+                        if self.cylinder == False:
                             J[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
                             J[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = np.exp(1j * (self.phix-self.phiy))
                         else:
@@ -231,7 +256,7 @@ class checkerboard_lattice_un:
                     if iy == 2*self.ny-1:
                         J_1[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
                     if ix == self.nx-1:
-                        if cylinder == False:
+                        if self.cylinder == False:
                             J_1[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
                             J_2[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = np.exp(1j * (self.phix-self.phiy))
                         else:
@@ -256,7 +281,7 @@ class checkerboard_lattice_un:
                 if iy%2 == 0:
                     J[ix, iy, (ix+1)%(self.nx), iy] = 1
                     if ix == self.nx - 1:
-                        if cylinder == False:
+                        if self.cylinder == False:
                             J[ix, iy, (ix+1)%(self.nx), iy] = np.exp(1j * 2 *self.phix)
                         else:
                             J[ix, iy, (ix+1)%(self.nx), iy] = 0
@@ -283,7 +308,7 @@ class checkerboard_lattice_un:
                 if iy%2 == 1:
                     J[ix, iy, (ix+1)%(self.nx), iy] = 1
                     if ix == self.nx - 1:
-                        if cylinder == False:
+                        if self.cylinder == False:
                             J[ix, iy, (ix+1)%(self.nx), iy] = np.exp(1j * 2 *self.phix)
                         else:
                             J[ix, iy, (ix+1)%(self.nx), iy] = 0
@@ -346,7 +371,7 @@ class checkerboard_lattice_un:
         self.H[self.J_by[:, 0], self.J_by[:, 0]] += self.v2 * self.mfden[self.J_by[:, 1]]
         self.H[self.J_by[:, 1], self.J_by[:, 1]] += self.v2 * self.mfden[self.J_by[:, 0]]
 
-
+        self.H = self.H + np.diag(self.V)
 
     def diagonalize_hamiltonian(self):
         self.energies, self.states = np.linalg.eigh(self.H)
@@ -389,8 +414,8 @@ class checkerboard_lattice_un:
         self.total_energy += \
             self.v1*np.sum(np.abs(self.mfhop_nn)**2) - \
             self.v1 * np.dot(self.mfden[self.J_nn[:, 0]], self.mfden[self.J_nn[:, 1]]) \
-            + self.v2 * np.sum(np.abs(self.mfhop_ax)**2+np.abs(self.mfhop_ay)**2+\
-                                np.abs(self.mfhop_bx)**2+np.abs(self.mfhop_by)**2) \
+            + self.v2 * (np.sum(np.abs(self.mfhop_ax)**2+np.abs(self.mfhop_bx)**2)+np.sum(np.abs(self.mfhop_ay)**2+\
+                                +np.abs(self.mfhop_by)**2)) \
             - self.v2 * np.dot(self.mfden[self.J_ax[:, 0]], self.mfden[self.J_ax[:, 1]]) \
             - self.v2 * np.dot(self.mfden[self.J_ay[:, 0]], self.mfden[self.J_ay[:, 1]]) \
             - self.v2 * np.dot(self.mfden[self.J_bx[:, 0]], self.mfden[self.J_bx[:, 1]]) \
