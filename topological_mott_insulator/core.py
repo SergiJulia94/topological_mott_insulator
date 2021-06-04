@@ -88,7 +88,7 @@ class checkerboard_lattice_un:
 
 
 
-    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, beta, cell_filling, phix, phiy):
+    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, beta, cell_filling, phix, phiy, cylinder):
         self.tre = 1E-10
         self.iterations = int(0)
         self.etas = np.array([])
@@ -115,6 +115,7 @@ class checkerboard_lattice_un:
         self.total_energy = None
         self.states = np.array([])
         self.states_fermi = np.array([])
+        self.cylinder = cylinder
         self.J_nn = None
         self.J_nn_1 = None
         self.J_nn_2 = None
@@ -123,6 +124,10 @@ class checkerboard_lattice_un:
         self.J_bx = None
         self.J_by = None
         self.J_nn_tw = None
+        self.J_nn_1_tw = None
+        self.J_nn_2_tw = None
+        self.flux_nn_1 = None
+        self.flux_nn_2 = None
         self.J_ax_tw = None
         self.J_ay_tw = None
         self.J_bx_tw = None
@@ -143,8 +148,8 @@ class checkerboard_lattice_un:
         self.posA = None
         self.posB = None
         self.lattice_positions()
-        self.set_initcond()
         self.set_hoppings()
+        self.set_initcond()
         self.set_initcond()
         self.H  = np.zeros((self.L_sites, self.L_sites), dtype=complex)
         self.c_mark = None
@@ -153,11 +158,11 @@ class checkerboard_lattice_un:
         self.mfden  = np.ones(self.L_sites, dtype=complex) + 0.1*np.random.rand(self.L_sites)
         self.mfden    = 0.5*self.L_sites*self.cell_filling*self.mfden/(np.sum(self.mfden))
         self.mfden_0  = np.copy(self.mfden)
-        self.mfhop_nn = 0.16*np.ones(2*self.L_sites, dtype=complex) + 0.1*np.random.rand(2*self.L_sites)+1j*0.05*np.random.rand(2*self.L_sites)
-        self.mfhop_ax = np.zeros(self.L, dtype=complex)
-        self.mfhop_ay = np.zeros(self.L, dtype=complex)
-        self.mfhop_bx = np.zeros(self.L, dtype=complex)
-        self.mfhop_by = np.zeros(self.L, dtype=complex)
+        self.mfhop_nn = 0.16*np.ones(np.size(self.J_nn[:,0]), dtype=complex) + 0.1*np.random.rand(np.size(self.J_nn[:,0]))+1j*0.05*np.random.rand(np.size(self.J_nn[:,0]))
+        self.mfhop_ax = np.zeros(np.size(self.J_ax[:,0]), dtype=complex)
+        self.mfhop_ay = np.zeros(np.size(self.J_ay[:,0]), dtype=complex)
+        self.mfhop_bx = np.zeros(np.size(self.J_bx[:,0]), dtype=complex)
+        self.mfhop_by = np.zeros(np.size(self.J_by[:,0]), dtype=complex)
         self.mfhop_nn_0 = np.copy(self.mfhop_nn)
         self.mfhop_ax_0 = np.copy(self.mfhop_ax)
         self.mfhop_ay_0 = np.copy(self.mfhop_ay)
@@ -199,8 +204,12 @@ class checkerboard_lattice_un:
                     if iy == 2*self.ny-1:
                         J[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
                     if ix == self.nx-1:
-                        J[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
-                        J[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = np.exp(1j * (self.phix-self.phiy))
+                        if cylinder == False:
+                            J[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
+                            J[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = np.exp(1j * (self.phix-self.phiy))
+                        else:
+                            J[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = 0
+                            J[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = 0
 
         J = np.reshape(J, (self.L_sites,self.L_sites), order='F')
         self.J_nn = np.argwhere(J!=0)
@@ -214,15 +223,31 @@ class checkerboard_lattice_un:
                 if iy%2 == 0:
                     J_1[ix, iy, (ix)%(self.nx), (iy+1)%(2*self.ny)] = 1
                     J_2[ix, iy, (ix)%(self.nx), (iy-1)%(2*self.ny)] = 1
+                    if iy == 0:
+                        J_2[ix, iy, (ix)%(self.nx), (iy-1)%(2*self.ny)] = np.exp(1j * (self.phix-self.phiy))
                 else:
                     J_1[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = 1
                     J_2[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = 1
+                    if iy == 2*self.ny-1:
+                        J_1[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
+                    if ix == self.nx-1:
+                        if cylinder == False:
+                            J_1[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = np.exp(1j * (self.phix+self.phiy))
+                            J_2[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = np.exp(1j * (self.phix-self.phiy))
+                        else:
+                            J_1[ix, iy, (ix+1)%(self.nx), (iy+1)%(2*self.ny)] = 0
+                            J_2[ix, iy, (ix+1)%(self.nx), (iy-1)%(2*self.ny)] = 0
 
         J_1 = np.reshape(J_1, (self.L_sites,self.L_sites), order='F')
         self.J_nn_1 = np.argwhere(J_1!=0)
+        self.J_nn_1_tw = J_1[self.J_nn_1[:,0],self.J_nn_1[:,1]]
 
         J_2 = np.reshape(J_2, (self.L_sites,self.L_sites), order='F')
         self.J_nn_2 = np.argwhere(J_2!=0)
+        self.J_nn_2_tw = J_2[self.J_nn_2[:,0],self.J_nn_2[:,1]]
+
+        self.flux_nn_1  = np.where(np.divmod(self.J_nn_1[:,0], self.nx)[0]%2==0, 1, -1)
+        self.flux_nn_2  = np.where(np.divmod(self.J_nn_2[:,0], self.nx)[0]%2==0, -1, 1)
 
 
         J = np.zeros((self.nx, 2*self.ny, self.nx, 2*self.ny), dtype=complex)
@@ -231,7 +256,10 @@ class checkerboard_lattice_un:
                 if iy%2 == 0:
                     J[ix, iy, (ix+1)%(self.nx), iy] = 1
                     if ix == self.nx - 1:
-                        J[ix, iy, (ix+1)%(self.nx), iy] = np.exp(1j * 2 *self.phix)
+                        if cylinder == False:
+                            J[ix, iy, (ix+1)%(self.nx), iy] = np.exp(1j * 2 *self.phix)
+                        else:
+                            J[ix, iy, (ix+1)%(self.nx), iy] = 0
 
         J = np.reshape(J, (self.L_sites,self.L_sites), order='F')
         self.J_ax = np.argwhere(J!=0)
@@ -255,7 +283,10 @@ class checkerboard_lattice_un:
                 if iy%2 == 1:
                     J[ix, iy, (ix+1)%(self.nx), iy] = 1
                     if ix == self.nx - 1:
-                        J[ix, iy, (ix+1)%(self.nx), iy] = np.exp(1j * 2 *self.phix)
+                        if cylinder == False:
+                            J[ix, iy, (ix+1)%(self.nx), iy] = np.exp(1j * 2 *self.phix)
+                        else:
+                            J[ix, iy, (ix+1)%(self.nx), iy] = 0
 
         J = np.reshape(J, (self.L_sites, self.L_sites), order='F')
         self.J_bx = np.argwhere(J!=0)
@@ -292,6 +323,8 @@ class checkerboard_lattice_un:
 
         ### hopping terms
         self.H[self.J_nn[:, 0], self.J_nn[:, 1]] += self.J_nn_tw*(self.t0)  - self.v1 * self.mfhop_nn
+        self.H[self.J_nn_1[:, 0], self.J_nn_1[:, 1]] += self.J_nn_1_tw*self.field*self.flux_nn_1*self.domain_sign_1
+        self.H[self.J_nn_2[:, 0], self.J_nn_2[:, 1]] += self.J_nn_2_tw*self.field*self.flux_nn_2*self.domain_sign_2
         self.H[self.J_ax[:, 0], self.J_ax[:, 1]] += self.J_ax_tw*(self.jax) - self.v2 * self.mfhop_ax
         self.H[self.J_ay[:, 0], self.J_ay[:, 1]] += self.J_ay_tw*(self.jay) - self.v2 * self.mfhop_ay
         self.H[self.J_bx[:, 0], self.J_bx[:, 1]] += self.J_bx_tw*(self.jbx) - self.v2 * self.mfhop_bx

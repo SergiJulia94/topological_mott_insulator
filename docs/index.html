@@ -82,7 +82,7 @@ nb_path: "index.ipynb"
 
 <span class="n">un_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_un</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span>
-		                        <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="n">cf</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="n">phix</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="n">phiy</span><span class="p">)</span>
+		                        <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="n">cf</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="n">phix</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="n">phiy</span><span class="p">,</span> <span class="n">cylinder</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">re_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_4unitcell</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="p">,</span><span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span>  
@@ -98,6 +98,29 @@ nb_path: "index.ipynb"
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-19-2ca753813b3a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     12</span> un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
+<span class="ansi-green-intense-fg ansi-bold">     13</span>                                         jbx<span class="ansi-blue-fg">=</span>jbx<span class="ansi-blue-fg">,</span> jby<span class="ansi-blue-fg">=</span>jby<span class="ansi-blue-fg">,</span> v1<span class="ansi-blue-fg">=</span>v1<span class="ansi-blue-fg">,</span> v2<span class="ansi-blue-fg">=</span>v2<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg"> 		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False)
+</span><span class="ansi-green-intense-fg ansi-bold">     15</span> 
+<span class="ansi-green-intense-fg ansi-bold">     16</span> re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=t0,jax=jax, jay=jay, 
+
+<span class="ansi-red-fg">TypeError</span>: __init__() got an unexpected keyword argument &#39;cylinder&#39;</pre>
+</div>
+</div>
+
 </div>
 </div>
 

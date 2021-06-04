@@ -13,7 +13,7 @@
 
 Perform a simple self-consistent algorithm to compare unrestricted and restricted Hartree-Fock results
 
-```
+```python
 nx, ny = 8, 8
 t0 = -1
 jax, jay, jbx, jby = 0.5, -0.5, -0.5, 0.5
@@ -27,7 +27,7 @@ beta = 1E+5
 
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy)
+		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False)
 
 re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=t0,jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2,  
@@ -42,7 +42,23 @@ for i1 in (range(0,200)):
         re_mf.iterate_mf()
 ```
 
-```
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    <ipython-input-19-2ca753813b3a> in <module>
+         12 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
+         13                                         jbx=jbx, jby=jby, v1=v1, v2=v2,
+    ---> 14 		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False)
+         15 
+         16 re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=t0,jax=jax, jay=jay, 
+
+
+    TypeError: __init__() got an unexpected keyword argument 'cylinder'
+
+
+```python
 fig  = plt.figure()
 ax = fig.add_subplot()
 sc = ax.scatter(un_mf.pos[:,0].flatten(),
@@ -63,7 +79,7 @@ plt.show()
 ![png](docs/images/output_6_0.png)
 
 
-```
+```python
 fig  = plt.figure()
 ax = fig.add_subplot()
 
@@ -88,7 +104,7 @@ plt.show()
 ![png](docs/images/output_7_0.png)
 
 
-```
+```python
 fig  = plt.figure()
 ax = fig.add_subplot()
 
