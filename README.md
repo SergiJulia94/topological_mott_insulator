@@ -24,7 +24,7 @@ beta = 1E+5
 
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=True, field=0.01*1j, induce='nothing', border=True)
+		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=True, field=0.0*1j, induce='nothing', border=True)
 
 re_mf = checkerboard_lattice_4unitcell(nx=nx,ny=ny,t0=t0,jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2,  
@@ -135,14 +135,14 @@ plt.show()
 
 ```
 plt.plot(un_mf.energies,'.')
-plt.plot(un_mf.energies_fermi,'.')
-
+plt.plot(un_mf.energies_fermi,'.', label='occupied')
+plt.legend()
 ```
 
 
 
 
-    [<matplotlib.lines.Line2D at 0x1214b1f90>]
+    <matplotlib.legend.Legend at 0x1224e5110>
 
 
 
