@@ -82,13 +82,13 @@ class checkerboard_lattice_un:
         `H`: `L_sites` x `L_sites` hermitian matrix of complex floats
             Self-consistent Hartree-Fock Hamiltonian in the occupation basis.
         `c_mark`: array of complex float
-            Value of the Local Chern Marker on each unit cell of the lattice.
+            Value of the Local Chern Marker (erase) on each unit cell of the lattice.
         """
 
 
 
 
-    def __init__(self, nx:int, ny:int, t0:float, jax:float, jay:float, jbx:float, jby:float, v1:float, v2:float, beta:float, cell_filling:float, phix:float, phiy:float, cylinder:bool=False, field:complex, induce:str, border:bool=False):
+    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, beta, cell_filling, phix, phiy, cylinder, field, induce, border):
         self.tre = 1E-10
         self.iterations = int(0)
         self.etas = np.array([])
