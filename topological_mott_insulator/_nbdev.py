@@ -2,14 +2,16 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"checkerboard_lattice_un": "00_core.ipynb",
-         "checkerboard_lattice_4unitcell": "00_core.ipynb",
-         "numbern": "00_core.ipynb",
-         "chern": "00_core.ipynb",
-         "plot_bonds": "00_core.ipynb",
-         "plot_lattice": "00_core.ipynb"}
+index = {"checkerboard_lattice_un": "00_Unrestricted.ipynb",
+         "checkerboard_lattice_4unitcell": "01_Restricted.ipynb",
+         "numbern": "02_Utils.ipynb",
+         "chern": "02_Utils.ipynb",
+         "plot_bonds": "02_Utils.ipynb",
+         "plot_lattice": "02_Utils.ipynb"}
 
-modules = ["core.py"]
+modules = ["unrestricted.py",
+           "restricted.py",
+           "utils.py"]
 
 doc_url = "https://SergiJulia94.github.io/topological_mott_insulator/"
 
