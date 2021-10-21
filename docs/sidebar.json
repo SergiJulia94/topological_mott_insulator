@@ -1,6 +1,8 @@
 {
   "topological_mott_insulator": {
     "Overview": "/",
-    "Unrestricted Hartree-Fock ": "core.html"
+    "Unrestricted Hartree-Fock ": "Unrestricted.html",
+    "Restricted Hartree-Fock (4-site unit cell ansatz)": "Restricted.html",
+    "Some useful functions": "Utils.html"
   }
 }

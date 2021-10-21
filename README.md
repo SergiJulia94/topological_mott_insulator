@@ -64,7 +64,7 @@ plt.show()
 fig  = plt.figure()
 ax = fig.add_subplot()
 
-segment, color, mini, maxi = tools.plot_bonds(un_mf.pos, un_mf.J_nn, np.imag(un_mf.mfhop_nn))
+segment, color, mini, maxi = plot_bonds(un_mf.pos, un_mf.J_nn, np.imag(un_mf.mfhop_nn))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
                                 array=color, norm=plt.Normalize(mini, maxi),
@@ -91,27 +91,27 @@ ax = fig.add_subplot()
 
 aux = np.concatenate((np.imag(un_mf.mfhop_ax), np.imag(un_mf.mfhop_ay), np.imag(un_mf.mfhop_bx), np.imag(un_mf.mfhop_ax)))
 maxi = np.amax(np.abs(aux))
-segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_ax, np.imag(un_mf.mfhop_ax))
+segment, color, mini_, maxi_ = plot_bonds(un_mf.pos, un_mf.J_ax, np.imag(un_mf.mfhop_ax))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
                                 array=color, norm=plt.Normalize(-maxi, maxi),
                                 linewidths=5, rasterized=True)
 ax.add_collection(ligne)
-segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_ay, -np.imag(un_mf.mfhop_ay))
-ligne = LineCollection(segment,linestyles='solid',
-                                cmap=plt.get_cmap('RdBu'),
-                                array=color, norm=plt.Normalize(-maxi, maxi),
-                                linewidths=5, rasterized=True)
-ax.add_collection(ligne)
-
-segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_bx, -np.imag(un_mf.mfhop_bx))
+segment, color, mini_, maxi_ = plot_bonds(un_mf.pos, un_mf.J_ay, -np.imag(un_mf.mfhop_ay))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
                                 array=color, norm=plt.Normalize(-maxi, maxi),
                                 linewidths=5, rasterized=True)
 ax.add_collection(ligne)
 
-segment, color, mini_, maxi_ = tools.plot_bonds(un_mf.pos, un_mf.J_by, np.imag(un_mf.mfhop_by))
+segment, color, mini_, maxi_ = plot_bonds(un_mf.pos, un_mf.J_bx, -np.imag(un_mf.mfhop_bx))
+ligne = LineCollection(segment,linestyles='solid',
+                                cmap=plt.get_cmap('RdBu'),
+                                array=color, norm=plt.Normalize(-maxi, maxi),
+                                linewidths=5, rasterized=True)
+ax.add_collection(ligne)
+
+segment, color, mini_, maxi_ = plot_bonds(un_mf.pos, un_mf.J_by, np.imag(un_mf.mfhop_by))
 ligne = LineCollection(segment,linestyles='solid',
                                 cmap=plt.get_cmap('RdBu'),
                                 array=color, norm=plt.Normalize(-maxi, maxi),
@@ -142,7 +142,7 @@ plt.legend()
 
 
 
-    <matplotlib.legend.Legend at 0x1224e5110>
+    <matplotlib.legend.Legend at 0x124b7fa50>
 
 
 
