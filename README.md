@@ -28,10 +28,10 @@ un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay,
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2, v3=v3, v4=v4,
 		                        beta=1E+5, cell_filling=1, phix=0., phiy=0., cylinder=False, field=0.*1j, induce='nothing', border=False)
 
-for i1 in (range(0,50)):
+for i1 in (range(0,100)):
     un_mf.iterate_mf(eta=0.6)
 
-for i1 in (range(0,50)):
+for i1 in (range(0,100)):
     un_mf.iterate_mf(eta=1.)    
 ```
 
@@ -128,4 +128,49 @@ for i1 in (range(0,2)):
 
 
 ![png](docs/images/output_19_0.png)
+
+
+### Effect of finite temperature 
+
+For increasing temperature the gap of the quantum anomalous Hall phase closes, and eventually the phase disappears. We first consider the effect of a small temperature $T/t=0.1$, for which no important changes are observed compared to the zero temperature case shown in the first example.
+
+```python
+nx, ny = 12, 12
+v1, v2 = 4., 2.5
+v3, v4 = Rydberg_v3v4(v1,v2)
+
+
+un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
+		                        jbx=jbx, jby=jby, v1=v1, v2=v2, v3=v3, v4=v4,
+		                        beta=10, cell_filling=1, phix=0., phiy=0., cylinder=False, field=0.1*1j, induce='nothing', border=False)
+
+for i1 in range(0,50):
+    un_mf.iterate_mf(eta=0.6)
+
+for i1 in range(0,50):
+    un_mf.iterate_mf(eta=1.)
+    
+un_mf.field = 0.
+
+for i1 in (range(0,50)):
+    un_mf.iterate_mf(eta=0.6)
+
+for i1 in (range(0,50)):
+    un_mf.iterate_mf(eta=1.)
+```
+
+
+![png](docs/images/output_23_0.png)
+
+
+The situation is different for $T/t=0.2$ where we observe that the upper band begins to have a finite population.
+
+
+![png](docs/images/output_25_0.png)
+
+
+For $T/t=1$ the quantum anomalous Hall phase has disappeared: the system is not gapped at all and there is no spontaneous time-reversal symmetry breaking in the nearest-neighbors hoppings.
+
+
+![png](docs/images/output_27_0.png)
 
