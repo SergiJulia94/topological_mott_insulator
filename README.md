@@ -13,13 +13,13 @@
 
 Perform a simple self-consistent algorithm of the unrestricted Hartree-Fock method to compare between site-nematic and quantum anomalous Hall phases.
 
-```
+```python
 t0, jax, jay, jbx, jby = -1, 0.5, -0.5, -0.5, 0.5 # We fix the hopping parameters of the Hamiltonian
 ```
 
 ### Site-nematic phase
 
-```
+```python
 nx, ny = 12, 12
 
 v1, v2 = 4., 1.
@@ -35,16 +35,13 @@ for i1 in (range(0,100)):
     un_mf.iterate_mf(eta=1.)    
 ```
 
-    No handles with labels found to put in legend.
 
-
-
-![png](docs/images/output_8_1.png)
+![png](docs/images/output_8_0.png)
 
 
 ### Quantum Anomalous Hall phase
 
-```
+```python
 nx, ny = 12, 12
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
@@ -77,7 +74,7 @@ for i1 in (range(0,50)):
 
 For a finite hole/particle doping, the unrestricted Hartree-Fock method gives rise to localized solutions due to the appearance of states inside the gap.
 
-```
+```python
 nx, ny = 12, 12
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
@@ -111,7 +108,7 @@ for i1 in (range(0,50)):
 
 When increasing the number of particles from half filling, the system eventually generates two domains with opposite spontaneous breaking of the time-reversal symmetry
 
-```
+```python
 nx, ny = 24, 24
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
@@ -137,7 +134,7 @@ for i1 in (range(0,2)):
 
 For increasing temperature the gap of the quantum anomalous Hall phase closes, and eventually the phase disappears. We first consider the effect of a small temperature $T/t=0.1$, for which no important changes are observed compared to the zero temperature case shown in the first example.
 
-```
+```python
 nx, ny = 12, 12
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
