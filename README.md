@@ -44,14 +44,7 @@ for i1 in (range(0,50)):
 ```
 
 
-
-
-    <matplotlib.legend.Legend at 0x124d61fd0>
-
-
-
-
-![png](docs/images/output_7_1.png)
+![png](docs/images/output_7_0.png)
 
 
 ### Quantum Anomalous Hall phase
