@@ -35,8 +35,11 @@ for i1 in (range(0,100)):
     un_mf.iterate_mf(eta=1.)    
 ```
 
+    No handles with labels found to put in legend.
 
-![png](docs/images/output_8_0.png)
+
+
+![png](docs/images/output_8_1.png)
 
 
 ### Quantum Anomalous Hall phase
