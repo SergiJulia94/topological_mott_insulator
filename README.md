@@ -43,6 +43,17 @@ for i1 in (range(0,50)):
     
 ```
 
+
+
+
+    <matplotlib.legend.Legend at 0x124d61fd0>
+
+
+
+
+![png](docs/images/output_7_1.png)
+
+
 ### Quantum Anomalous Hall phase
 
 ```python
@@ -79,6 +90,17 @@ for i1 in (range(0,50)):
 for i1 in (range(0,50)):
     un_mf.iterate_mf(eta=1.)
 ```
+
+
+
+
+    <matplotlib.legend.Legend at 0x1262f67d0>
+
+
+
+
+![png](docs/images/output_10_1.png)
+
 
 ### Self-trapped polaron
 
@@ -119,6 +141,17 @@ for i1 in (range(0,50)):
     un_mf.iterate_mf(eta=1.)
 ```
 
+
+
+
+    <matplotlib.legend.Legend at 0x125f39b10>
+
+
+
+
+![png](docs/images/output_14_1.png)
+
+
 ### Topological domains
 
 When increasing the number of particles from half filling, the system eventually generates two domains with opposite spontaneous breaking of the time-reversal symmetry
@@ -149,3 +182,14 @@ for i1 in (range(0,2)):
 for i1 in (range(0,2)):
     un_mf.iterate_mf(eta=1.)
 ```
+
+
+
+
+    <matplotlib.legend.Legend at 0x12490dbd0>
+
+
+
+
+![png](docs/images/output_18_1.png)
+
