@@ -11,63 +11,45 @@
 
 ## How to use
 
-Perform a simple self-consistent algorithm of the unrestricted Hartree-Fock method to compare between site-nematic and quantum anomalous Hall phases
+Perform a simple self-consistent algorithm of the unrestricted Hartree-Fock method to compare between site-nematic and quantum anomalous Hall phases.
+
+```python
+t0, jax, jay, jbx, jby = -1, 0.5, -0.5, -0.5, 0.5 # We fix the hopping parameters of the Hamiltonian
+```
 
 ### Site-nematic phase
 
 ```python
 nx, ny = 12, 12
-t0 = -1
-jax, jay, jbx, jby = 0.5, -0.5, -0.5, 0.5
+
 v1, v2 = 4., 1.
-tau = np.copy(v1/v2)
-alpha = ((tau-1)/(8-tau))**(1/6)
-kappa = v1*(1+alpha**6)
-
-v3 = kappa*(1/(1+(2*alpha)**6))
-v4 = kappa*(1/(1+(np.sqrt(5)*alpha)**6))
-
-cf = (nx*ny)/(nx*ny)
-phix, phiy = 0., 0.
-beta = 1E+5
-
+v3, v4 = Rydbergv3v4(v1,v2)
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2, v3=v3, v4=v4,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False, field=0.*1j, induce='nothing', border=False)
+		                        beta=1E+5, cell_filling=1, phix=0., phiy=0., cylinder=False, field=0.*1j, induce='nothing', border=False)
 
 for i1 in (range(0,50)):
     un_mf.iterate_mf(eta=0.6)
 
 for i1 in (range(0,50)):
-    un_mf.iterate_mf(eta=1.)
-    
+    un_mf.iterate_mf(eta=1.)    
 ```
 
 
-![png](docs/images/output_7_0.png)
+![png](docs/images/output_8_0.png)
 
 
 ### Quantum Anomalous Hall phase
 
 ```python
 nx, ny = 12, 12
-t0 = -1
-jax, jay, jbx, jby = 0.5, -0.5, -0.5, 0.5
 v1, v2 = 4., 2.5
-tau = np.copy(v1/v2)
-alpha = ((tau-1)/(8-tau))**(1/6)
-kappa = v1*(1+alpha**6)
+v3, v4 = Rydbergv3v4(v1,v2)
 
-v3 = kappa*(1/(1+(2*alpha)**6))
-v4 = kappa*(1/(1+(np.sqrt(5)*alpha)**6))
-
-cf = (nx*ny)/(nx*ny)
-phix, phiy = 0., 0.
-beta = 1E+5
 
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2, v3=v3, v4=v4,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False, field=0.1*1j, induce='nothing', border=False)
+		                        beta=1E+5, cell_filling=1, phix=0., phiy=0., cylinder=False, field=0.1*1j, induce='nothing', border=False)
 
 for i1 in range(0,50):
     un_mf.iterate_mf(eta=0.6)
@@ -92,7 +74,7 @@ for i1 in (range(0,50)):
 
 
 
-![png](docs/images/output_10_1.png)
+![png](docs/images/output_11_1.png)
 
 
 ### Self-trapped polaron
@@ -101,23 +83,14 @@ For a finite hole/particle doping, the unrestricted Hartree-Fock method gives ri
 
 ```python
 nx, ny = 12, 12
-t0 = -1
-jax, jay, jbx, jby = 0.5, -0.5, -0.5, 0.5
 v1, v2 = 4., 2.5
-tau = np.copy(v1/v2)
-alpha = ((tau-1)/(8-tau))**(1/6)
-kappa = v1*(1+alpha**6)
-
-v3 = kappa*(1/(1+(2*alpha)**6))
-v4 = kappa*(1/(1+(np.sqrt(5)*alpha)**6))
+v3, v4 = Rydbergv3v4(v1,v2)
 
 cf = (nx*ny+1)/(nx*ny)
-phix, phiy = 0., 0.
-beta = 1E+5
 
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2, v3=v3, v4=v4,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False, field=0.1*1j, induce='nothing', border=False)
+		                        beta=1E+5, cell_filling=cf, phix=0., phiy=0., cylinder=False, field=0.1*1j, induce='nothing', border=False)
 
 for i1 in (range(0,50)):
     un_mf.iterate_mf(eta=0.6)
@@ -142,7 +115,7 @@ for i1 in (range(0,50)):
 
 
 
-![png](docs/images/output_14_1.png)
+![png](docs/images/output_15_1.png)
 
 
 ### Topological domains
@@ -151,23 +124,14 @@ When increasing the number of particles from half filling, the system eventually
 
 ```python
 nx, ny = 24, 24
-t0 = -1
-jax, jay, jbx, jby = 0.5, -0.5, -0.5, 0.5
 v1, v2 = 4., 2.5
-tau = np.copy(v1/v2)
-alpha = ((tau-1)/(8-tau))**(1/6)
-kappa = v1*(1+alpha**6)
-
-v3 = kappa*(1/(1+(2*alpha)**6))
-v4 = kappa*(1/(1+(np.sqrt(5)*alpha)**6))
+v3, v4 = Rydbergv3v4(v1,v2)
 
 cf = (nx*ny+5)/(nx*ny)
-phix, phiy = 0., 0.
-beta = 1E+5
 
 un_mf = checkerboard_lattice_un(nx=nx,ny=ny,t0=-1, jax=jax, jay=jay, 
 		                        jbx=jbx, jby=jby, v1=v1, v2=v2, v3=v3, v4=v4,
-		                        beta=beta, cell_filling=cf, phix=phix, phiy=phiy, cylinder=False, field=0.*1j, induce='nothing', border=False)
+		                        beta=1E+5, cell_filling=cf, phix=0., phiy=0., cylinder=False, field=0.*1j, induce='nothing', border=False)
 
 for i1 in (range(0,2)):
     un_mf.iterate_mf(eta=0.6)
@@ -184,5 +148,5 @@ for i1 in (range(0,2)):
 
 
 
-![png](docs/images/output_18_1.png)
+![png](docs/images/output_19_1.png)
 
