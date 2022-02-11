@@ -9,19 +9,18 @@ entries:
     - output: web,pdf
       title: Overview
       url: /
+    - output: web
       subfolders:
-      - output: web
-        subfolderitems:
-        - output: web,pdf
-          title: 'Unrestricted Hartree-Fock '
-          url: Unrestricted.html
-        - output: web,pdf
-          title: Restricted Hartree-Fock (4-site unit cell ansatz)
-          url: Restricted.html
-        - output: web,pdf
-          title: Some useful functions
-          url: Utils.html
-        title: Library
+      - output: web,pdf
+        title: 'Unrestricted Hartree-Fock '
+        url: Unrestricted.html
+      - output: web,pdf
+        title: Restricted Hartree-Fock (4-site unit cell ansatz)
+        url: Restricted.html
+      - output: web,pdf
+        title: Some useful functions
+        url: Utils.html
+      title: Library
     output: web
     title: topological_mott_insulator
   output: web
