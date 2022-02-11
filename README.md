@@ -14,8 +14,5 @@ The, to call the library, use `from topological_mott_insulator import ...`
 
 ## Publications
 This code has been used in 
-- [S. Julià-Farré, M. Müller, M. Lewenstein and A. Dauphin Phys. Rev. Lett. **125**,240601 (2020)](https://doi.org/10.1103/PhysRevLett.125.240601)
+- [S. Julià-Farré, M. Müller, M. Lewenstein and A. Dauphin, Phys. Rev. Lett. **125**,240601 (2020)](https://doi.org/10.1103/PhysRevLett.125.240601)
 - [L. Cardarelli, S. Julià-Farré, M. Lewenstein, A. Dauphin and M. Müller, arXiv:xxx]().
-
-## Authors
-Sergi Julià-Farré and Alexandre Dauphin
