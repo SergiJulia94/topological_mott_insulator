@@ -49,62 +49,6 @@ nb_path: "00_Unrestricted.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h2 id="checkerboard_lattice_un" class="doc_header"><code>class</code> <code>checkerboard_lattice_un</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/unrestricted.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>checkerboard_lattice_un</code>(<strong><code>nx</code></strong>, <strong><code>ny</code></strong>, <strong><code>t0</code></strong>, <strong><code>jax</code></strong>, <strong><code>jay</code></strong>, <strong><code>jbx</code></strong>, <strong><code>jby</code></strong>, <strong><code>v1</code></strong>, <strong><code>v2</code></strong>, <strong><code>v3</code></strong>, <strong><code>v4</code></strong>, <strong><code>beta</code></strong>, <strong><code>cell_filling</code></strong>, <strong><code>phix</code></strong>, <strong><code>phiy</code></strong>, <strong><code>cylinder</code></strong>, <strong><code>field</code></strong>, <strong><code>induce</code></strong>, <strong><code>border</code></strong>)</p>
 </blockquote>
-<p>Unrestricted Hartree-Fock class to solve self-consistently the system Hamiltonian.</p>
-$$H = -t0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+jax\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.)
-+jay\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)+\+jbx\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +jby\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.)
-+v1\sum_&lt;ij&gt;n_in_j+v2\sum_{&lt;&lt;ij&gt;&gt;}n_in_j$$<h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2><p><code>nx</code>, <code>ny</code> : int
-    Number of unit cells in the x and y direction.
-<code>t0</code>, <code>jax</code>, <code>jay</code>, <code>jbx</code>, <code>jby</code>, <code>v1</code>, <code>v2</code>, <code>v3</code>, <code>v4</code>: float
-    Parameters of the Hamiltonian
-<code>beta</code> : float
-    Inverse temperature.
-<code>phix</code>, <code>phiy</code> : complex phases in x and y hoppings for twisted boundary conditions.
-<code>cell_filling</code>: float
-    Number of particles per 2-site unit cell. The total number of particles is then computed as <code>cell_filling</code>*<code>L</code>.</p>
-<h2 id="Attributes">Attributes<a class="anchor-link" href="#Attributes"> </a></h2><p><code>tre</code>: float | 1E-10
-    Threshold of the Fermi weights to be considered non-zero.
-<code>iterations</code>: int
-    Counts the number of iterations performed by the self-consistent algorithm.
-<code>etas</code>: array of int
-    Stores the values of the self-consistent update parameter eta used in the iterations.
-<code>L</code>: int
-    Number of two-site unit cells.
-<code>L_sites</code>: int
-    Number of physical sites.
-<code>filling</code>: int
-    Number of particles.
-<code>mu</code>: float
-    Value of the chemical potential in the current state of the iteration algorithm.
-<code>energies</code>: array of float
-    Self-consistent single-particle energies in the current state of the algorithm.
-<code>energies_fermi</code>: array of float
-    Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm.
-<code>total_energy</code>: float
-    Expectation value of the Hamiltonian per unit cell in the current state of the algorithm.
-<code>states</code>: array of arrays of float
-    Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to energies.
-<code>states_fermi</code>: array of arrays of float
-    Matrix containing the single-particle eigenstates with finite occupation in the occupation basis, in the current state of the algorithm. They are ordered according to energies_fermi.
-<code>J_nn</code>, <code>J_ax</code>, <code>J_ay</code>, <code>J_bx</code>, <code>J_by</code>: array of int tuples
-    Each element of these arrays is a tuple with the coordinates of different types of neighbors, e.g., <code>J_nn</code> contains the tuples with the coordinates of all nearest-neighbors. The coordinates correspond to the one-dimensional index of the flattened two-dimensional lattice.
-<code>J_nn_1</code>, <code>J_nn_2</code>: array of int tuples
-    Decomposition of <code>J_nn</code> into upper diagonal and lower diagonal nearest-neighbors. This distintcion is useful for some vectorized operations.
-<code>J_nn_tw</code>, <code>J_ax_tw</code>, <code>J_ay_tw</code>, <code>J_bx_tw</code>, <code>J_by_tw</code>: array of complex floats
-    Contains the hopping phases for each tuple of neighbors needed for twisted boundary conditions.
-<code>mfden</code>: array of floats
-    Expected value of the Hartree-Fock self-consistent local occupation in the current step of the algorithm.
-<code>mfhop_nn</code>, <code>mfhop_ax</code>, <code>mfhop_ay</code>, <code>mfhop_bx</code>, <code>mfhop_by</code>: array of complex floats
-    Expected value of the Hartree-Fock self-consistent hoppings in the current step of the algorithm.
-<code>mfden_0</code>: array of floats
-    Initial value of the Hartree-Fock local occupation.
-<code>mfhop_nn_0</code>, <code>mfhop_ax_0</code>, <code>mfhop_ay_0</code>, <code>mfhop_bx_0</code>, <code>mfhop_by_0</code>: array of complex floats
-    Initial value of the Hartree-Fock hoppings.
-<code>pos</code>: array of int tuples
-    X and Y coordinates of each lattice site
-<code>H</code>: <code>L_sites</code> x <code>L_sites</code> hermitian matrix of complex floats
-    Self-consistent Hartree-Fock Hamiltonian in the occupation basis.
-<code>c_mark</code>: array of complex float
-    Value of the Local Chern Marker (erase) on each unit cell of the lattice.</p>
 
 </div>
 
@@ -123,6 +67,188 @@ $$H = -t0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+jax\sum_{i\in A}(c_{i}^\dagge
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Unrestricted Hartree-Fock class to solve self-consistently the system Hamiltonian.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.) 
+        +J^A_y\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)+\\+J^B_x\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +J^B_y\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.) 
+        +V_1\sum_{&lt;ij&gt;}n_in_j+V_2\sum_{&lt;&lt;ij&gt;&gt;}n_in_j$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="---Parameters">   Parameters<a class="anchor-link" href="#---Parameters"> </a></h2><table>
+<thead><tr>
+<th>Parameters</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nx</code>, <code>ny</code></td>
+<td>int</td>
+<td>Number of unit cells in the x and y direction</td>
+</tr>
+<tr>
+<td><code>t0</code>, <code>jax</code>, <code>jay</code>, <code>jbx</code>, <br> <code>jby</code>, <code>v1</code>, <code>v2</code>, <code>v3</code>, <code>v4</code></td>
+<td>float</td>
+<td>Parameters of the Hamiltonian</td>
+</tr>
+<tr>
+<td><code>beta</code></td>
+<td>float</td>
+<td>Inverse temperature</td>
+</tr>
+<tr>
+<td><code>phix</code>, <code>phiy</code></td>
+<td>complex</td>
+<td>phases in x and y hoppings for twisted boundary conditions</td>
+</tr>
+<tr>
+<td><code>cell_filling</code></td>
+<td>float</td>
+<td>Number of particles per 2-site unit cell.<br> The total number of particles is then computed as <code>cell_filling</code>*<code>L</code>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Attributes">Attributes<a class="anchor-link" href="#Attributes"> </a></h2><table>
+<thead><tr>
+<th>Attribute</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tre</code></td>
+<td>float</td>
+<td>Threshold of the Fermi weights to be considered non-zero Default value: 1E-10</td>
+</tr>
+<tr>
+<td><code>iterations</code></td>
+<td>int</td>
+<td>Counts the number of iterations performed by the self-consistent algorithm.</td>
+</tr>
+<tr>
+<td><code>etas</code></td>
+<td>array of int</td>
+<td>Stores the values of the self-consistent update parameter eta used in the iterations.</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>int</td>
+<td>Number of two-site unit cells</td>
+</tr>
+<tr>
+<td><code>L_sites</code></td>
+<td>int</td>
+<td>Number of physical sites</td>
+</tr>
+<tr>
+<td><code>filling</code></td>
+<td>int</td>
+<td>Number of particles</td>
+</tr>
+<tr>
+<td><code>mu</code></td>
+<td>float</td>
+<td>Value of the chemical potential in the current state of the iteration algorithm</td>
+</tr>
+<tr>
+<td><code>energies</code></td>
+<td>array of float</td>
+<td>Self-consistent single-particle energies in the current state of the algorithm</td>
+</tr>
+<tr>
+<td><code>energies_fermi</code></td>
+<td>array of float</td>
+<td>Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm</td>
+</tr>
+<tr>
+<td><code>total_energy</code></td>
+<td>float</td>
+<td>Expectation value of the Hamiltonian per unit cell in the current state of the algorithm</td>
+</tr>
+<tr>
+<td><code>states</code></td>
+<td>array of arrays of float</td>
+<td>Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to energies.</td>
+</tr>
+<tr>
+<td><code>states_fermi</code></td>
+<td>array of arrays of float</td>
+<td>Matrix containing the single-particle eigenstates with finite occupation in the occupation basis, in the current state of the algorithm. They are ordered according to energies_fermi.</td>
+</tr>
+<tr>
+<td><code>J_nn</code>, <code>J_ax</code>, <code>J_ay</code>, <code>J_bx</code>, <code>J_by</code></td>
+<td>array of int tuples</td>
+<td>Each element of these arrays is a tuple with the coordinates of different types of neighbors, e.g., <code>J_nn</code> contains the tuples with the coordinates of all nearest-neighbors. The coordinates correspond to the one-dimensional index of the flattened two-dimensional lattice.</td>
+</tr>
+<tr>
+<td><code>J_nn_1</code>, <code>J_nn_2</code></td>
+<td>array of int tuples</td>
+<td>Decomposition of <code>J_nn</code> into upper diagonal and lower diagonal nearest-neighbors. This distintcion is useful for some vectorized operations.</td>
+</tr>
+<tr>
+<td><code>J_nn_tw</code>, <code>J_ax_tw</code>, <code>J_ay_tw</code>, <code>J_bx_tw</code>, <code>J_by_tw</code></td>
+<td>array of complex floats</td>
+<td>Contains the hopping phases for each tuple of neighbors needed for twisted boundary conditions.</td>
+</tr>
+<tr>
+<td><code>mfden</code></td>
+<td>array of floats</td>
+<td>Expected value of the Hartree-Fock self-consistent local occupation in the current step of the algorithm</td>
+</tr>
+<tr>
+<td><code>mfhop_nn</code>, <code>mfhop_ax</code>, <code>mfhop_ay</code>, <code>mfhop_bx</code>, <code>mfhop_by</code></td>
+<td>array of complex floats</td>
+<td>Expected value of the Hartree-Fock self-consistent hoppings in the current step of the algorithm</td>
+</tr>
+<tr>
+<td><code>mfden_0</code></td>
+<td>array of floats</td>
+<td>Initial value of the Hartree-Fock local occupation</td>
+</tr>
+<tr>
+<td><code>mfhop_nn_0</code>, <code>mfhop_ax_0</code>, <code>mfhop_ay_0</code>, <code>mfhop_bx_0</code>, <code>mfhop_by_0</code></td>
+<td>array of complex floats</td>
+<td>Initial value of the Hartree-Fock hoppings</td>
+</tr>
+<tr>
+<td><code>pos</code></td>
+<td>array of int tuples</td>
+<td>X and Y coordinates of each lattice site</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td><code>L_sites</code> x <code>L_sites</code> hermitian matrix of complex floats</td>
+<td>Self-consistent Hartree-Fock Hamiltonian in the occupation basis</td>
+</tr>
+<tr>
+<td><code>c_mark</code></td>
+<td>array of complex float</td>
+<td>Value of the Local Chern Marker (erase) on each unit cell of the lattice.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </div>
  
 
