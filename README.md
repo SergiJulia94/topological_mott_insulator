@@ -12,6 +12,10 @@ To install locally the library, go to the folder containing the library and run 
 
 The, to call the library, use `from topological_mott_insulator import ...`
 
+## Documentation and examples
+
+The documentation and some examples can be found [here](https://sergijulia94.github.io/topological_mott_insulator/)
+
 ## Publications
 This code has been used in 
 - [S. Julià-Farré, M. Müller, M. Lewenstein and A. Dauphin, Phys. Rev. Lett. **125**,240601 (2020)](https://doi.org/10.1103/PhysRevLett.125.240601)
