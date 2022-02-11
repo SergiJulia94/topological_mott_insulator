@@ -29,6 +29,7 @@ t0, jax, jay, jbx, jby = -1, 0.5, -0.5, -0.5, 0.5 # We fix the hopping parameter
 
 ```python
 #hide_output
+#slow
 nx, ny = 12, 12
 
 v1, v2 = 4., 1.
@@ -57,6 +58,7 @@ We then plot the density and the energy spectrum (the color is the occupation of
 
 ```python
 #hide_output
+#slow
 nx, ny = 12, 12
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
@@ -93,6 +95,7 @@ For a finite hole/particle doping, the unrestricted Hartree-Fock method gives ri
 
 ```python
 #hide_output
+#slow
 nx, ny = 12, 12
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
@@ -130,6 +133,7 @@ We then plot the expetation value of the imaginary hopping and the energy spectr
 When increasing the number of particles from half filling, the system eventually generates two domains with opposite spontaneous breaking of the time-reversal symmetry
 
 ```python
+#slow
 nx, ny = 24, 24
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
@@ -172,6 +176,7 @@ for  eta in mb:
 For increasing temperature the gap of the quantum anomalous Hall phase closes, and eventually the phase disappears. We first consider the effect of a small temperature $T/t=0.1$, for which no important changes are observed compared to the zero temperature case shown in the first example.
 
 ```python
+#slow
 nx, ny = 12, 12
 v1, v2 = 4., 2.5
 v3, v4 = Rydberg_v3v4(v1,v2)
