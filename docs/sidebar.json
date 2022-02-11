@@ -1,12 +1,12 @@
 {
   "topological_mott_insulator": {
     "Overview": "/",
-    "Example": "example_unrestricted",
+    "Example": "/example_unrestricted",
     "":{
     "Library":{
-      "Unrestricted Hartree-Fock ": "Unrestricted",
-      "Restricted Hartree-Fock (4-site unit cell ansatz)": "Restricted",
-      "Some useful functions": "Utils"
+      "Unrestricted Hartree-Fock ": "/Unrestricted",
+      "Restricted Hartree-Fock (4-site unit cell ansatz)": "/Restricted",
+      "Some useful functions": "/Utils"
      }
    }
  }
