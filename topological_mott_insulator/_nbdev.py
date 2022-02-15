@@ -3,7 +3,6 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"checkerboard_lattice_un": "00_Unrestricted.ipynb",
-         "checkerboard_lattice_4unitcell": "01_Restricted.ipynb",
          "numbern": "02_Utils.ipynb",
          "chern": "02_Utils.ipynb",
          "plot_bonds": "02_Utils.ipynb",
@@ -11,7 +10,6 @@ index = {"checkerboard_lattice_un": "00_Unrestricted.ipynb",
          "Rydberg_v3v4": "02_Utils.ipynb"}
 
 modules = ["unrestricted.py",
-           "restricted.py",
            "utils.py"]
 
 doc_url = "https://SergiJulia94.github.io/topological_mott_insulator/"
