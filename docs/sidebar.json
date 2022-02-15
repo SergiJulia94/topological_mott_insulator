@@ -5,7 +5,6 @@
     "":{
     "Library":{
       "Unrestricted Hartree-Fock ": "/Unrestricted",
-      "Restricted Hartree-Fock (4-site unit cell ansatz)": "/Restricted",
       "Some useful functions": "/Utils"
      }
    }

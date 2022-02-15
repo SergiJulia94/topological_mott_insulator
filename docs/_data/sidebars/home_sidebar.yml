@@ -19,9 +19,6 @@ entries:
           title: 'Unrestricted Hartree-Fock '
           url: /Unrestricted
         - output: web,pdf
-          title: Restricted Hartree-Fock (4-site unit cell ansatz)
-          url: /Restricted
-        - output: web,pdf
           title: Some useful functions
           url: /Utils
         title: Library
