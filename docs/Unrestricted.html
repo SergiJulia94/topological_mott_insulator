@@ -47,7 +47,7 @@ nb_path: "nbs/00_Unrestricted.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="checkerboard_lattice_un" class="doc_header"><code>class</code> <code>checkerboard_lattice_un</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/unrestricted.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>checkerboard_lattice_un</code>(<strong><code>nx</code></strong>, <strong><code>ny</code></strong>, <strong><code>t0</code></strong>, <strong><code>jax</code></strong>, <strong><code>jay</code></strong>, <strong><code>jbx</code></strong>, <strong><code>jby</code></strong>, <strong><code>v1</code></strong>, <strong><code>v2</code></strong>, <strong><code>v3</code></strong>, <strong><code>v4</code></strong>, <strong><code>beta</code></strong>, <strong><code>cell_filling</code></strong>, <strong><code>phix</code></strong>, <strong><code>phiy</code></strong>, <strong><code>cylinder</code></strong>, <strong><code>field</code></strong>, <strong><code>induce</code></strong>, <strong><code>border</code></strong>)</p>
+<h2 id="checkerboard_lattice_un" class="doc_header"><code>class</code> <code>checkerboard_lattice_un</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/unrestricted.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>checkerboard_lattice_un</code>(<strong><code>nx</code></strong>, <strong><code>ny</code></strong>, <strong><code>t0</code></strong>, <strong><code>jax</code></strong>, <strong><code>jay</code></strong>, <strong><code>jbx</code></strong>, <strong><code>jby</code></strong>, <strong><code>v1</code></strong>, <strong><code>v2</code></strong>, <strong><code>v3</code></strong>, <strong><code>v4</code></strong>, <strong><code>beta</code></strong>, <strong><code>cell_filling</code></strong>, <strong><code>phix</code></strong>=<em><code>0.0</code></em>, <strong><code>phiy</code></strong>=<em><code>0.0</code></em>, <strong><code>cylinder</code></strong>=<em><code>False</code></em>, <strong><code>field</code></strong>=<em><code>0.0</code></em>, <strong><code>induce</code></strong>=<em><code>'nothing'</code></em>, <strong><code>border</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 
 </div>
@@ -116,6 +116,26 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 <td><code>cell_filling</code></td>
 <td>float</td>
 <td>Number of particles per 2-site unit cell.<br> The total number of particles is then computed as <code>cell_filling</code>*<code>L</code>.</td>
+</tr>
+<tr>
+<td><code>cylinder</code></td>
+<td>bool</td>
+<td>Wheter to use a cylinder geometry with open bondary conditions in the x direction.</td>
+</tr>
+<tr>
+<td><code>field</code></td>
+<td>float</td>
+<td>Strength of the imaginary part of the hopping parameter across plaquettes of nearest-neighbors, which breaks time-reversal symmetry.</td>
+</tr>
+<tr>
+<td><code>induce</code></td>
+<td>str</td>
+<td>Spatial pattern of the guiding field, whose strenght is determined by the <code>field</code> parameter.</td>
+</tr>
+<tr>
+<td><code>border</code></td>
+<td>bool</td>
+<td>Wheter to include on-site chemical potentials at the open borders to avoid charge orders induced by the sharp trunctation of repulsive interactions. This parameter is irrelevant if <code>cylinder</code> is set to False.</td>
 </tr>
 </tbody>
 </table>

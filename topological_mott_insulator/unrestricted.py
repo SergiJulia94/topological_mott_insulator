@@ -18,7 +18,7 @@ from scipy.optimize import brentq,newton
 
 # Cell
 class checkerboard_lattice_un:
-    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, v3, v4, beta, cell_filling, phix, phiy, cylinder, field, induce, border):
+    def __init__(self, nx, ny, t0, jax, jay, jbx, jby, v1, v2, v3, v4, beta, cell_filling, phix=0., phiy=0., cylinder=False, field=0., induce='nothing', border=False):
         self.tre = 1E-10
         self.iterations = int(0)
         self.etas = np.array([])
@@ -49,7 +49,7 @@ class checkerboard_lattice_un:
         self.states = np.array([])
         self.states_fermi = np.array([])
         self.cylinder = cylinder
-        self.field = field
+        self.field = 1j*np.real(field)
         self.J_nn = None
         self.J_nn_1 = None
         self.J_nn_2 = None
@@ -90,7 +90,7 @@ class checkerboard_lattice_un:
         self.pos = None
         self.posA = None
         self.posB = None
-        self.border_potential = border
+        self.border_potential = border*self.cylinder
         self.lattice_positions()
         self.set_hoppings()
         self.set_initcond()
@@ -318,7 +318,7 @@ class checkerboard_lattice_un:
         self.mu = brentq(numbern, a, b, args=(self.filling, self.beta, self.energies_fermi))
         #    mu=newton(numbern_un,EE[int(nn)],args=(nn,beta,EE),tol=1E-6,maxiter=100)
 
-    def iterate_mf(self, eta):
+    def iterate_mf(self, eta=1):
         self.update_hamiltonian()
         self.diagonalize_hamiltonian()
         self.update_mfparams(eta=eta)

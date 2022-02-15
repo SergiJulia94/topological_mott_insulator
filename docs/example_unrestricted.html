@@ -72,7 +72,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 <span class="n">v3</span><span class="p">,</span> <span class="n">v4</span> <span class="o">=</span> <span class="n">Rydberg_v3v4</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">v2</span><span class="p">)</span>
 <span class="n">un_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_un</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="o">=</span><span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="o">=</span><span class="n">v4</span><span class="p">,</span>
-		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">cylinder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="mf">0.</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="n">induce</span><span class="o">=</span><span class="s1">&#39;nothing&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     
 <span class="n">l_eta</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span>
 
@@ -80,7 +80,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">400</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">()</span>
     
 </pre></div>
 
@@ -143,7 +143,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="n">un_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_un</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="o">=</span><span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="o">=</span><span class="n">v4</span><span class="p">,</span>
-		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">cylinder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="mf">0.1</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="n">induce</span><span class="o">=</span><span class="s1">&#39;nothing&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">l_eta</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span>
 
@@ -151,13 +151,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
-    
-<span class="n">un_mf</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="mf">0.</span>
-
-<span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -227,7 +221,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="n">un_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_un</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="o">=</span><span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="o">=</span><span class="n">v4</span><span class="p">,</span>
-		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="n">cf</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">cylinder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="mf">0.1</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="n">induce</span><span class="o">=</span><span class="s1">&#39;nothing&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="n">cf</span><span class="p">)</span>
 
 <span class="n">l_eta</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span>
 
@@ -235,13 +229,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
-    
-<span class="n">un_mf</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="mf">0.</span>
-
-<span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -311,7 +299,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="n">un_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_un</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="o">=</span><span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="o">=</span><span class="n">v4</span><span class="p">,</span>
-		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="n">cf</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">cylinder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="mf">0.</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="n">induce</span><span class="o">=</span><span class="s1">&#39;nothing&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		                        <span class="n">beta</span><span class="o">=</span><span class="mf">1E+5</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="n">cf</span><span class="p">)</span>
 
 <span class="n">l_eta</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span>
 
@@ -319,13 +307,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
-    
-<span class="n">un_mf</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="mf">0.</span>
-
-<span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -411,7 +393,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="n">un_mf</span> <span class="o">=</span> <span class="n">checkerboard_lattice_un</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">jax</span><span class="o">=</span><span class="n">jax</span><span class="p">,</span> <span class="n">jay</span><span class="o">=</span><span class="n">jay</span><span class="p">,</span> 
 		                        <span class="n">jbx</span><span class="o">=</span><span class="n">jbx</span><span class="p">,</span> <span class="n">jby</span><span class="o">=</span><span class="n">jby</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="o">=</span><span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="o">=</span><span class="n">v4</span><span class="p">,</span>
-		                        <span class="n">beta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">phix</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">phiy</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">cylinder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="mf">0.1</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="n">induce</span><span class="o">=</span><span class="s1">&#39;nothing&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		                        <span class="n">beta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">cell_filling</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">l_eta</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 
@@ -419,13 +401,7 @@ nb_path: "nbs/example_unrestricted.ipynb"
 
 <span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
-    
-<span class="n">un_mf</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="mf">0.</span>
-
-<span class="k">for</span>  <span class="n">eta</span> <span class="ow">in</span> <span class="n">mb</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">parent</span><span class="o">=</span><span class="n">mb</span><span class="p">):</span>
-        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">un_mf</span><span class="o">.</span><span class="n">iterate_mf</span><span class="p">()</span>
 </pre></div>
 
     </div>
