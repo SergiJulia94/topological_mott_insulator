@@ -67,6 +67,13 @@ nb_path: "nbs/02_Utils.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The 0's of this function occur when the desired number of particles in the system <code>nn_</code> coincides with the number of particles of the system computed from the Fermi distribution that depends on the Hartree-Fock single-particle energies <code>energies_</code>, the chemical potential <code>mu_</code>, and the inverse temperature <code>beta_</code>. It is used to find the chemical potential of the system with the Brent's method.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -78,7 +85,7 @@ nb_path: "nbs/02_Utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chern" class="doc_header"><code>chern</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chern</code>(<strong><code>states</code></strong>, <strong><code>mx</code></strong>, <strong><code>my</code></strong>, <strong><code>band</code></strong>)</p>
+<h4 id="plot_bonds" class="doc_header"><code>plot_bonds</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_bonds</code>(<strong><code>vecpos</code></strong>, <strong><code>J_</code></strong>, <strong><code>mf_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -100,7 +107,7 @@ nb_path: "nbs/02_Utils.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This function comptutes the local Chern marker.</p>
+<p>This function plots bond quantities, such as the expectation value of the imaginary part of the hoppings. <code>vecpos</code> is an array with shape (L_lattice, 2), containing the x and y positions of the L<em>lattice lattice points, ordered in a one-dimensional snake-like folding. `J</em><code>is an array with shape (L_bonds, 2). For each of the L_bonds that one wants to plot, it contains the two one-dimensional indeces of the sites connected by the bond, e.g., it can encode nearest-neighbors bonds.</code>mf_` is a one-dimensional array with shape (L_bonds) containing the value of the quantities that one wants to plot at the L_bonds, e.g., the iomaginary part of the nearest-neighbors hoppings expectation value.</p>
 
 </div>
 </div>
@@ -116,38 +123,7 @@ nb_path: "nbs/02_Utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_bonds" class="doc_header"><code>plot_bonds</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_bonds</code>(<strong><code>vecpos</code></strong>, <strong><code>J_</code></strong>, <strong><code>mf_</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_lattice" class="doc_header"><code>plot_lattice</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L81" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_lattice</code>(<strong><code>posx_</code></strong>, <strong><code>posy_</code></strong>, <strong><code>color_</code></strong>, <strong><code>title_</code></strong>)</p>
+<h4 id="plot_lattice" class="doc_header"><code>plot_lattice</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_lattice</code>(<strong><code>posx_</code></strong>, <strong><code>posy_</code></strong>, <strong><code>color_</code></strong>, <strong><code>title_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -185,7 +161,7 @@ nb_path: "nbs/02_Utils.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Rydberg_v3v4" class="doc_header"><code>Rydberg_v3v4</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Rydberg_v3v4</code>(<strong><code>v1_</code></strong>, <strong><code>v2_</code></strong>)</p>
+<h4 id="Rydberg_v3v4" class="doc_header"><code>Rydberg_v3v4</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/utils.py#L56" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Rydberg_v3v4</code>(<strong><code>v1_</code></strong>, <strong><code>v2_</code></strong>)</p>
 </blockquote>
 
 </div>

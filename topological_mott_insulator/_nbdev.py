@@ -4,7 +4,6 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"checkerboard_lattice_un": "00_Unrestricted.ipynb",
          "numbern": "02_Utils.ipynb",
-         "chern": "02_Utils.ipynb",
          "plot_bonds": "02_Utils.ipynb",
          "plot_lattice": "02_Utils.ipynb",
          "Rydberg_v3v4": "02_Utils.ipynb"}
