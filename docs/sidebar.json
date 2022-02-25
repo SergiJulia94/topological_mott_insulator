@@ -1,9 +1,15 @@
 {
   "topological_mott_insulator": {
     "Overview": "/",
-    "Example": "/example_unrestricted",
     "":{
     "Library":{
+    "Example restricted": "/example_restricted",
+    "Example Unrestricted": "/example_unrestricted",
+              }
+            },
+    "":{
+    "Library":{
+      "restricted Hartree-Fock ": "/Restricted",
       "Unrestricted Hartree-Fock ": "/Unrestricted",
       "Some useful functions": "/Utils"
      }
