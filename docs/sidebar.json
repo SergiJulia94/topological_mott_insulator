@@ -2,7 +2,7 @@
   "topological_mott_insulator": {
     "Overview": "/",
     "":{
-    "Library":{
+    "Examples":{
     "Example restricted": "/example_restricted",
     "Example Unrestricted": "/example_unrestricted",
               }
