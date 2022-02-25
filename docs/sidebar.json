@@ -4,10 +4,10 @@
     "":{
     "Examples":{
     "Example restricted": "/example_restricted",
-    "Example Unrestricted": "/example_unrestricted",
+    "Example Unrestricted": "/example_unrestricted"
               }
             },
-    "":{
+    "empty1":{
     "Library":{
       "restricted Hartree-Fock ": "/Restricted",
       "Unrestricted Hartree-Fock ": "/Unrestricted",

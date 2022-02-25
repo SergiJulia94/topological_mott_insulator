@@ -1,4 +1,3 @@
-
 # Welcome to the Topological Mott Insulator toolbox
 > A Hartree-Fock library to study an interaction-induced Chern Insulator in the checkerboard lattice. <br>
 

@@ -9,12 +9,21 @@ entries:
     - output: web,pdf
       title: Overview
       url: /
-    - output: web,pdf
-      title: Example
-      url: /example_unrestricted
       subfolders:
       - output: web
         subfolderitems:
+        - output: web,pdf
+          title: Example restricted
+          url: /example_restricted
+        - output: web,pdf
+          title: Example Unrestricted
+          url: /example_unrestricted
+        title: Examples
+      - output: web
+        subfolderitems:
+        - output: web,pdf
+          title: 'restricted Hartree-Fock '
+          url: /Restricted
         - output: web,pdf
           title: 'Unrestricted Hartree-Fock '
           url: /Unrestricted
