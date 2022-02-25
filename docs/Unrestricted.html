@@ -199,6 +199,11 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 <td>Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm</td>
 </tr>
 <tr>
+<td><code>fermi_weigths</code></td>
+<td>array of float</td>
+<td>Fermi occupation probabilities for each of the single-particle energies in <code>energies</code></td>
+</tr>
+<tr>
 <td><code>total_energy</code></td>
 <td>float</td>
 <td>Expectation value of the Hamiltonian per unit cell in the current state of the algorithm</td>
@@ -206,12 +211,12 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 <tr>
 <td><code>states</code></td>
 <td>array of arrays of float</td>
-<td>Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to energies.</td>
+<td>Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to <code>energies</code>.</td>
 </tr>
 <tr>
 <td><code>states_fermi</code></td>
 <td>array of arrays of float</td>
-<td>Matrix containing the single-particle eigenstates with finite occupation in the occupation basis, in the current state of the algorithm. They are ordered according to energies_fermi.</td>
+<td>Matrix containing the single-particle eigenstates with finite occupation in the occupation basis, in the current state of the algorithm. They are ordered according to <code>energies_fermi</code>.</td>
 </tr>
 <tr>
 <td><code>J_nn</code>, <code>J_ax</code>, <code>J_ay</code>, <code>J_bx</code>, <code>J_by</code></td>

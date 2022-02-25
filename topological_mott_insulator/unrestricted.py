@@ -45,6 +45,7 @@ class checkerboard_lattice_un:
         self.mu = 0.
         self.energies = np.zeros(self.L_sites)
         self.energies_fermi = np.array([])
+        self.fermi_weights = None
         self.total_energy = None
         self.states = np.array([])
         self.states_fermi = np.array([])
@@ -373,7 +374,7 @@ class checkerboard_lattice_un:
         self.update_mu()
         self.energies_fermi[self.beta*(self.energies_fermi-self.mu) > 30] = 30./self.beta + self.mu
         weights = 1. / (np.exp(self.beta * (self.energies_fermi - self.mu)) + 1)
-
+        self.fermi_weights = np.copy(weights)
         self.energies_fermi, self.states_fermi, weights = \
         self.energies_fermi[weights>self.tre], self.states[:, weights>self.tre], weights[weights>self.tre]
 
