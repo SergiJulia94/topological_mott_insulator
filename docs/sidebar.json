@@ -3,13 +3,13 @@
     "Overview": "/",
     "":{
     "Examples":{
-    "Example restricted": "/example_restricted",
+    "Example Restricted": "/example_restricted",
     "Example Unrestricted": "/example_unrestricted"
               }
             },
     "empty1":{
     "Library":{
-      "restricted Hartree-Fock ": "/Restricted",
+      "Restricted Hartree-Fock ": "/Restricted",
       "Unrestricted Hartree-Fock ": "/Unrestricted",
       "Some useful functions": "/Utils"
      }
