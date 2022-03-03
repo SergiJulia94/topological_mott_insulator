@@ -13,7 +13,7 @@ entries:
       - output: web
         subfolderitems:
         - output: web,pdf
-          title: Example restricted
+          title: Example Restricted
           url: /example_restricted
         - output: web,pdf
           title: Example Unrestricted
@@ -22,7 +22,7 @@ entries:
       - output: web
         subfolderitems:
         - output: web,pdf
-          title: 'restricted Hartree-Fock '
+          title: 'Restricted Hartree-Fock '
           url: /Restricted
         - output: web,pdf
           title: 'Unrestricted Hartree-Fock '
