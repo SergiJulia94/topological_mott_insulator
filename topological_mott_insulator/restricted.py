@@ -73,7 +73,7 @@ class checkerboardeightsites():
         self.interactions_hc = np.zeros([self.nV,5,self.nBands,self.nBands])
         for _ in range(self.nV):
             self.interactions_hc[_] = self.Vsarray[_]*self.distance_mask_hc[_]
-        return
+        returncla
 
     def get_Hoffdiag(self):
         bx, by = self.BZindices
@@ -179,9 +179,11 @@ class checkerboardeightsites():
                 self.terminate = True
         else:
             self.large_gradient_counter += 1
-        # Convergence if both cgd_norm and delta_FE below threshold.
-        if max(cgd_norm, self.delta_FE) < self.convergence_thresh:
+        # Convergence if both cgd_norm and delta_FE below threshold or if one mean-field operator is self.convergence_thresh_mfops times larger than all others.
+        if (max(cgd_norm, self.delta_FE) < self.convergence_thresh_cFE) or self.mf_ops_converged():
             self.converged = True
+        else:
+            self.converged = False
         return
 
     def set_fpmethod_convergence_params(self):
@@ -200,20 +202,21 @@ class checkerboardeightsites():
             self.update_outputdata()
             self.check_convergence()
             if self.iterpivot > self.itermin and (self.converged or self.terminate):
-                break
-        return
+                return self.converged, self.terminate
+        return False, False
 
     def prt_outputdata(self):
         for key in self.basic_params:
             v = self.outputdata[key]
-            self.permaprt('%s ' %key, 0 if v<self.thop else v)
+            self.permaprt('%s ' %key, 0 if v<self.convergence_thresh_mfops else v)
         return
 
     def prt_postrun_data(self,verbose=True):
         if verbose:
-            self.permaprt('Run concluded. Final number of iterations: %d out of %d.' %(self.iterpivot,self.itermax))
+            self.permaprt('Run concluded.\nFinal number of iterations: %d out of %d.' %(self.iterpivot,self.itermax))
             self.permaprt('Correlation gradient: %.0e' %np.linalg.norm(self.corr_grad_max))
             self.permaprt('Free energy gradient: %.0e' %self.delta_FE)
+            self.permaprt('Ratio two largest order parameters: %.0e' %self.mf_ops_gap)
             self.prt_outputdata()
             self.permaprt('')
         return
@@ -388,15 +391,14 @@ class checkerboardeightsites():
 
 
 class mfcheckb(checkerboardeightsites):
-    def __init__(self, itermin=20, itermax=100, kgridsize=10, Vgrid=5,
+    def __init__(self, itermin=20, itermax=700, kgridsize=10, Vgrid=5,
                  beta=100, corrm='comp', rydberg=False, storepkl=False):
 
         # Number of interaction terms considered: nV=5 --> {V0, V1, V2, V3, V4}
         self.nV = 5
 
-        # Parameters. Some can be changed before run/plot time.
+        # Parameters.
         self.rydberg = rydberg
-        self.thop = 1.E-9 # Precision threshold for order parameters.
         self.kgridsize = [kgridsize, kgridsize] # Grating of the first Brilluoin zone
         self.V1V2region = [2,6,0,4] # Region of V1-V2
         self.Vsgridshape = [1,Vgrid,Vgrid,1,1] # Size of the grid in the region of {V1,V2}
@@ -405,9 +407,10 @@ class mfcheckb(checkerboardeightsites):
         self.itermax = itermax # Max number of fixed-point search iterations
         self.beta = beta # Inverse temperature 1/kT
         self.corrm = corrm
-        self.convergence_thresh = 1E-14 # Threshold for convergence of iterative method
+        self.convergence_thresh_cFE = 1.E-12 # Threshold on correlation and FE for search convergence
+        self.convergence_thresh_mfops = 1.E-4 # Threshold on mf operators for search convergence
         self.consecutive_oscillations = 200 # Consecutive ±1 oscilattions of charge order parameter, signalling non-convergence (metallic phase)
-        self.oscillation_threshold = 1E-4 # Threshold below which oscillation count starts
+        self.oscillation_threshold = 1.E-4 # Threshold below which oscillation count starts
         ''' Plot '''
         self.dpi = 500
         self.beta = 100 # Inverse temperature 1/kT
@@ -423,7 +426,6 @@ class mfcheckb(checkerboardeightsites):
         # These parameters must not change.
         self.t = 1.0
         self.J = 0.5
-        self.thop = 1.E-6 # Precision threshold for order parameters.
 
         # Initialize some attributes.
         self.markcol = ['#94cef3', '#6e92e8', '#cccccc', '#636363', '#fdbe85', '#3182bd', '#feedde', '#fb6a4a']
@@ -561,40 +563,53 @@ class mfcheckb(checkerboardeightsites):
         y = r[:,1][coo]
         return x,y
 
-    def get_pd_ordparams(self,ax,k,l,markersize,show_warnings=True):
+    def mf_ops_converged(self):
+        mf_ops = np.array([self.outputdata['xiQAH']] + [self.outputdata['rho%d'%_] for _ in range(1,4)])
+        mf_ops /= np.max(mf_ops)
+        mf_ops[mf_ops==1.] = 0
+        self.mf_ops_gap = np.max(mf_ops)
+        mf_ops[mf_ops < self.convergence_thresh_mfops] = 0
+        mf_ops_converged = not bool(np.sum(mf_ops))
+        return mf_ops_converged
+
+    def get_mf_ops(self, show_warnings=True):
         # Extract data for phase diagram plot.
-        xiQAH = np.abs( self.datadict['xiQAH'][...,k,l].squeeze() )
+        xiQAH = np.abs(self.datadict['xiQAH'].squeeze())
         V1V2gridshape = xiQAH.shape
-        # op : tensor of order parameters.
-        op = np.zeros( (self.nV + 1,) + V1V2gridshape )
-        op[0] = xiQAH
-        for _ in range(1, self.nV-1):
-            op[_] = self.datadict['rho'+str(_)][...,k,l].squeeze()
-        # Set op to zero when below numeric threshold.
-        op[op < self.thop] = 0
-        # Check if there is more than one op above threshold. It should not be the case. Print a warning.
-        ms = np.sum(np.array(op, dtype=bool), axis=0)
+        # mf_ops : tensor of order parameters.
+        mf_ops = np.zeros((4,) + V1V2gridshape)
+        mf_ops[0] = xiQAH
+        for _ in range(1, 4):
+            mf_ops[_] = self.datadict['rho'+str(_)].squeeze()
+        # Set mf_ops to zero when below numeric threshold.
+        mf_ops[mf_ops < self.convergence_thresh_mfops] = 0
+        # Check if there is more than one mf_ops above threshold. It should not be the case. Print a warning.
+        ms = np.sum(np.array(mf_ops, dtype=bool), axis=0)
         ms[ms==1] = 0
-        cond = np.array_equal( ms, np.zeros(V1V2gridshape) )
+        cond = np.array_equal(ms, np.zeros(V1V2gridshape))
         if not cond:
-            # Identify V1,V2 with multiple finite op, set them all to 0 (invalidate data point).
+            # Identify V1,V2 with multiple finitprinte op, set them all to 0 (invalidate data point).
             xs,ys = np.where(ms != 0)
-            V1, V2 = self.get_V1V2_mat()
-            self.permaprt('Beware! Data point with multiple finite order parameters!',verbose=show_warnings)
+            V1,V2 = self.get_V1V2_mat()
+            self.permaprt('*'*300+'Beware! Data point with multiple finite order parameters!',verbose=show_warnings)
             for _ in range(len(xs)):
                 x,y = xs[_],ys[_]
-                self.permaprt('V1: %.2f, V2: %.2f, ' %(V1[x,y], V2[x,y]), op[:,x,y],verbose=show_warnings)
-                op[:,x,y] *= 0
+                self.permaprt('V1: %.2f, V2: %.2f, ' %(V1[x,y], V2[x,y]), mf_ops[:,x,y], verbose=show_warnings)
+                mf_ops[:,x,y] *= 0
+        return mf_ops
+
+    def get_pd_ordparams(self,ax,markersize,show_warnings=True):
+        mf_ops = self.get_mf_ops(show_warnings=show_warnings)
         if self.rydberg:
             for iV1 in range(len(self.V1s)):
                 w = np.where(self.V2s > 511/574*self.V1s[iV1])
-                op[:, iV1, w] *= 0
-            op[:, :, np.where(self.V2s == 0)] *= 0
+                mf_ops[:, iV1, w] *= 0
+            mf_ops[:, :, np.where(self.V2s == 0)] *= 0
         # Draw scatter
         colors = ['Reds', 'Greens_r', 'Blues_r', 'spring']
         scs = []
         for _ in range(4):
-            x, y, c = self.get_vals(op[_])
+            x, y, c = self.get_vals(mf_ops[_])
             sc = ax.scatter(x, y, c=c, cmap=colors[_], s=markersize, marker='s')
             scs.append(sc)
         return scs[0], ax
@@ -616,7 +631,7 @@ class mfcheckb(checkerboardeightsites):
         lw = 1
 
         # Order parameter scatter plot
-        sc, ax1 = self.get_pd_ordparams(ax1,0,0,markersize,show_warnings=False)
+        sc, ax1 = self.get_pd_ordparams(ax1,markersize,show_warnings=False)
 
         # Axes limits
         x0,x1,y0,y1 = self.V1V2region
@@ -674,7 +689,7 @@ class mfcheckb(checkerboardeightsites):
         spinelw = 1
 
         # Order parameter scatter plot
-        sc, ax1 = self.get_pd_ordparams(ax1,0,0,markersize,show_warnings=True)
+        sc, ax1 = self.get_pd_ordparams(ax1,markersize,show_warnings=True)
 
         # Axes limits
         x0,x1,y0,y1 = self.V1V2region
@@ -726,7 +741,7 @@ class mfcheckb(checkerboardeightsites):
         # Compact pool, Rydberg potential
         r = np.copy(Vsarray_pool_ryd)
         for _ in range(1,self.nV):
-            cond = np.where(r[:,_] == 0); r = np.delete(r, cond, 0)
+            cond = np.where(r[:,_] == 0); rp = np.delete(r, cond, 0)
             cond = np.isnan(r[:,_]);      r = np.delete(r, cond, 0)
         cond = np.where(r[:,2] >= r[:,1]);   r = np.delete(r, cond, 0)
         cond = np.where(r[:,1] >= 8*r[:,2]); r = np.delete(r, cond, 0)
