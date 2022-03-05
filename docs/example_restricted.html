@@ -31,14 +31,21 @@ nb_path: "nbs/example_restricted.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Fixed-point-search,-single-V1-V2-set">Fixed-point search, single V1-V2 set<a class="anchor-link" href="#Fixed-point-search,-single-V1-V2-set"> </a></h2>
+<h2 id="Fixed-point-search,-single-$V_1$-$V_2$-set">Fixed-point search, single $V_1$-$V_2$ set<a class="anchor-link" href="#Fixed-point-search,-single-$V_1$-$V_2$-set"> </a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We perform three simple self-consistent runs of the fixed-point search, for different values of V1 and V2.
+<p>We perform three simple self-consistent runs of the fixed-point search, for different values of $V_1$ and $V_2$.
 For these values, the system is expected to be, respectively, in a site-nematic insulator, a stripe insulator and in a quantum anomalous Hall phase.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Site-nematic phase, finite $\rho_1$.</p>
 
 </div>
 </div>
@@ -91,6 +98,21 @@ xiQAH  0
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The site-nematic is the low-energy charge order for distance-4 interaction $V_4$, hence also $\rho_4$ is finite.</p>
+<p>Starting out with a random complex correlation matrix, the run is concluded with a minimum number of iterations. A good convergence is reached in the gradient of both the correlation matrix and the free energy. The largest order parameter is many orders of magnitude larger than all others, indicating clear convergence in one phase, in this case the site-nematic.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>String phase, finite $\rho_2$.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -139,6 +161,13 @@ xiQAH  0
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Topological phase, finite $\xi_{\textrm{QAH}}$.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -187,6 +216,13 @@ xiQAH  0.06781430129528668
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The three operations can be carried out using one method, $\textrm{single_run}$.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -235,7 +271,14 @@ xiQAH  0.06784365449749535
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Phase-diagram,-finite-V1-and-V2,-V3=0">Phase diagram, finite V1 and V2, V3=0<a class="anchor-link" href="#Phase-diagram,-finite-V1-and-V2,-V3=0"> </a></h2>
+<h2 id="Phase-diagram,-finite-$V_1$-and-$V_2$,-$V_3=0$">Phase diagram, finite $V_1$ and $V_2$, $V_3=0$<a class="anchor-link" href="#Phase-diagram,-finite-$V_1$-and-$V_2$,-$V_3=0$"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Phase diagram of the $V_1$-$V_2$ model.</p>
+
 </div>
 </div>
 </div>
@@ -264,10 +307,6 @@ xiQAH  0.06784365449749535
     <span class="n">MyPlt</span> <span class="o">=</span> <span class="n">MyCl</span><span class="o">.</span><span class="n">plot_phasediag_fixedV3</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">markersize</span><span class="p">)</span>
     <span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
     <span class="n">MyPlt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># The following two commands integrate all the operations shown above.</span>
-<span class="c1"># MyCl.grid_run(Vgrid=Vgrid, V1V2region=V1V2region)</span>
-<span class="c1"># MyCl.plot_phasediag_fixedV3(figsize=4, markersize=500).show()</span>
 </pre></div>
 
     </div>
@@ -297,7 +336,31 @@ xiQAH  0.06784365449749535
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Phase-diagram,-finite-V1,-V2-and-V3.">Phase diagram, finite V1, V2 and V3.<a class="anchor-link" href="#Phase-diagram,-finite-V1,-V2-and-V3."> </a></h2>
+<p>The presence of a QAH topological phase is marked.
+Repetition of the runs, starting with different initial correlation matrix, refines the phase diagram, particularly at the phase transitions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following two commands integrate all the operations done above.</p>
+<p>$\textrm{MyCl.grid_run(Vgrid=Vgrid, V1V2region=V1V2region)}$
+$\textrm{MyCl.plot_phasediag_fixedV3(figsize=4, markersize=500).show()}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Phase-diagram,-finite-$V_1$,-$V_2$-and-$V_3$">Phase diagram, finite $V_1$, $V_2$ and $V_3$<a class="anchor-link" href="#Phase-diagram,-finite-$V_1$,-$V_2$-and-$V_3$"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Effect of the $V_3$ interaction on the phase diagram of the $V_1$-$V_2$ model.</p>
+
 </div>
 </div>
 </div>
@@ -355,13 +418,20 @@ xiQAH  0.06784365449749535
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>The inclusion of a finite $V_3$ evidently enlarges and stabilizes the topological phase.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Phase-diagram,-effective-Rydberg-potential">Phase diagram, effective Rydberg potential<a class="anchor-link" href="#Phase-diagram,-effective-Rydberg-potential"> </a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Phase diagram.</p>
+<p>Phase diagram of the long-range interaction model, with effective Rydberg potential.</p>
 
 </div>
 </div>
@@ -392,10 +462,6 @@ xiQAH  0.06784365449749535
     <span class="n">MyPlt</span> <span class="o">=</span> <span class="n">MyCl</span><span class="o">.</span><span class="n">plot_phasediag_rydberg</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">markersize</span><span class="p">)</span>
     <span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">MyPlt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># The following two commands integrate all the operations shown above.</span>
-<span class="c1"># MyCl.grid_run(verbose=verbose, Vgrid=Vgrid, V1V2region=V1V2region, rydberg=rydberg)</span>
-<span class="c1"># MyCl.plot_phasediag_rydberg(figsize=4, markersize=500).show()</span>
 </pre></div>
 
     </div>
@@ -423,6 +489,15 @@ xiQAH  0.06784365449749535
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following two commands integrate all the operations above.</p>
+<p>$\textrm{MyCl.grid_run(verbose=verbose, Vgrid=Vgrid, V1V2region=V1V2region, rydberg=rydberg)}$
+$\textrm{MyCl.plot_phasediag_rydberg(figsize=4, markersize=500).show()}$</p>
+
+</div>
+</div>
+</div>
 </div>
  
 
