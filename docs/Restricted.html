@@ -91,6 +91,234 @@ nb_path: "nbs/01_Restricted.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Restricted Hartree-Fock class to solve self-consistently the system Hamiltonian.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.) 
+        +J^A_y\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)+\\+J^B_x\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +J^B_y\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.) 
+        +V_1\sum_{&lt;ij&gt;}n_in_j+V_2\sum_{&lt;&lt;ij&gt;&gt;}n_in_j+\\+V_3\sum_{&lt;ij&gt;_3}n_in_j+V_4\sum_{&lt;ij&gt;_4}n_in_j$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Methods">Methods<a class="anchor-link" href="#Methods"> </a></h2><table>
+<thead><tr>
+<th>Attribute</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tre</code></td>
+<td>float</td>
+<td>Threshold of the Fermi weights to be considered non-zero Default value: 1E-10</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="---Parameters">   Parameters<a class="anchor-link" href="#---Parameters"> </a></h2><table>
+<thead><tr>
+<th>Parameters</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nx</code>, <code>ny</code></td>
+<td>int</td>
+<td>Number of unit cells in the x and y direction</td>
+</tr>
+<tr>
+<td><code>t0</code>, <code>jax</code>, <code>jay</code>, <code>jbx</code>, <br> <code>jby</code>, <code>v1</code>, <code>v2</code>, <code>v3</code>, <code>v4</code></td>
+<td>float</td>
+<td>Parameters of the Hamiltonian</td>
+</tr>
+<tr>
+<td><code>beta</code></td>
+<td>float</td>
+<td>Inverse temperature</td>
+</tr>
+<tr>
+<td><code>phix</code>, <code>phiy</code></td>
+<td>complex</td>
+<td>phases in x and y hoppings for twisted boundary conditions</td>
+</tr>
+<tr>
+<td><code>cell_filling</code></td>
+<td>float</td>
+<td>Number of particles per 2-site unit cell.<br> The total number of particles is then computed as <code>cell_filling</code>*<code>L</code>.</td>
+</tr>
+<tr>
+<td><code>cylinder</code></td>
+<td>bool</td>
+<td>Wheter to use a cylinder geometry with open bondary conditions in the x direction.</td>
+</tr>
+<tr>
+<td><code>field</code></td>
+<td>float</td>
+<td>Strength of the imaginary part of the hopping parameter across plaquettes of nearest-neighbors, which breaks time-reversal symmetry.</td>
+</tr>
+<tr>
+<td><code>induce</code></td>
+<td>str</td>
+<td>Spatial pattern of the guiding field, whose strenght is determined by the <code>field</code> parameter.</td>
+</tr>
+<tr>
+<td><code>border</code></td>
+<td>bool</td>
+<td>Wheter to include on-site chemical potentials at the open borders to avoid charge orders induced by the sharp trunctation of repulsive interactions. This parameter is irrelevant if <code>cylinder</code> is set to False.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Attributes">Attributes<a class="anchor-link" href="#Attributes"> </a></h2><table>
+<thead><tr>
+<th>Attribute</th>
+<th>type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tre</code></td>
+<td>float</td>
+<td>Threshold of the Fermi weights to be considered non-zero Default value: 1E-10</td>
+</tr>
+<tr>
+<td><code>iterations</code></td>
+<td>int</td>
+<td>Counts the number of iterations performed by the self-consistent algorithm.</td>
+</tr>
+<tr>
+<td><code>etas</code></td>
+<td>array of int</td>
+<td>Stores the values of the self-consistent update parameter eta used in the iterations.</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>int</td>
+<td>Number of two-site unit cells</td>
+</tr>
+<tr>
+<td><code>L_sites</code></td>
+<td>int</td>
+<td>Number of physical sites</td>
+</tr>
+<tr>
+<td><code>filling</code></td>
+<td>int</td>
+<td>Number of particles</td>
+</tr>
+<tr>
+<td><code>mu</code></td>
+<td>float</td>
+<td>Value of the chemical potential in the current state of the iteration algorithm</td>
+</tr>
+<tr>
+<td><code>energies</code></td>
+<td>array of float</td>
+<td>Self-consistent single-particle energies in the current state of the algorithm</td>
+</tr>
+<tr>
+<td><code>energies_fermi</code></td>
+<td>array of float</td>
+<td>Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm</td>
+</tr>
+<tr>
+<td><code>fermi_weigths</code></td>
+<td>array of float</td>
+<td>Fermi occupation probabilities for each of the single-particle energies in <code>energies</code></td>
+</tr>
+<tr>
+<td><code>total_energy</code></td>
+<td>float</td>
+<td>Expectation value of the Hamiltonian per unit cell in the current state of the algorithm</td>
+</tr>
+<tr>
+<td><code>states</code></td>
+<td>array of arrays of float</td>
+<td>Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to <code>energies</code>.</td>
+</tr>
+<tr>
+<td><code>states_fermi</code></td>
+<td>array of arrays of float</td>
+<td>Matrix containing the single-particle eigenstates with finite occupation in the occupation basis, in the current state of the algorithm. They are ordered according to <code>energies_fermi</code>.</td>
+</tr>
+<tr>
+<td><code>J_nn</code>, <code>J_ax</code>, <code>J_ay</code>, <code>J_bx</code>, <code>J_by</code></td>
+<td>array of int tuples</td>
+<td>Each element of these arrays is a tuple with the coordinates of different types of neighbors, e.g., <code>J_nn</code> contains the tuples with the coordinates of all nearest-neighbors. The coordinates correspond to the one-dimensional index of the flattened two-dimensional lattice.</td>
+</tr>
+<tr>
+<td><code>J_nn_1</code>, <code>J_nn_2</code></td>
+<td>array of int tuples</td>
+<td>Decomposition of <code>J_nn</code> into upper diagonal and lower diagonal nearest-neighbors. This distintcion is useful for some vectorized operations.</td>
+</tr>
+<tr>
+<td><code>J_nn_tw</code>, <code>J_ax_tw</code>, <code>J_ay_tw</code>, <code>J_bx_tw</code>, <code>J_by_tw</code></td>
+<td>array of complex floats</td>
+<td>Contains the hopping phases for each tuple of neighbors needed for twisted boundary conditions.</td>
+</tr>
+<tr>
+<td><code>mfden</code></td>
+<td>array of floats</td>
+<td>Expected value of the Hartree-Fock self-consistent local occupation in the current step of the algorithm</td>
+</tr>
+<tr>
+<td><code>mfhop_nn</code>, <code>mfhop_ax</code>, <code>mfhop_ay</code>, <code>mfhop_bx</code>, <code>mfhop_by</code></td>
+<td>array of complex floats</td>
+<td>Expected value of the Hartree-Fock self-consistent hoppings in the current step of the algorithm</td>
+</tr>
+<tr>
+<td><code>mfden_0</code></td>
+<td>array of floats</td>
+<td>Initial value of the Hartree-Fock local occupation</td>
+</tr>
+<tr>
+<td><code>mfhop_nn_0</code>, <code>mfhop_ax_0</code>, <code>mfhop_ay_0</code>, <code>mfhop_bx_0</code>, <code>mfhop_by_0</code></td>
+<td>array of complex floats</td>
+<td>Initial value of the Hartree-Fock hoppings</td>
+</tr>
+<tr>
+<td><code>pos</code></td>
+<td>array of int tuples</td>
+<td>X and Y coordinates of each lattice site</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td><code>L_sites</code> x <code>L_sites</code> hermitian matrix of complex floats</td>
+<td>Self-consistent Hartree-Fock Hamiltonian in the occupation basis</td>
+</tr>
+<tr>
+<td><code>c_mark</code></td>
+<td>array of complex float</td>
+<td>Value of the Local Chern Marker (erase) on each unit cell of the lattice.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </div>
  
 
