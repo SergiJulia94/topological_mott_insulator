@@ -392,7 +392,7 @@ class checkerboard_eight_sites():
 
 class mean_field_analysis(checkerboard_eight_sites):
     def __init__(self, itermin=20, itermax=700, kgridsize=10, Vgrid=5,
-                 beta=100, corrm='comp', rydberg=False, storepkl=False):
+                 beta=100, corrm='comp', rydberg=False):
 
         # Number of interaction terms considered: nV=5 --> {V0, V1, V2, V3, V4}
         self.nV = 5
@@ -413,7 +413,7 @@ class mean_field_analysis(checkerboard_eight_sites):
         self.oscillation_threshold = 1.E-4 # Threshold below which oscillation count starts
         ''' Plot '''
         self.dpi = 500
-        self.beta = 100 # Inverse temperature 1/kT
+        self.beta = 100 # Inverse temperature store1/kT
         self.format = 'png'
         self.datadir = 'data'
 
