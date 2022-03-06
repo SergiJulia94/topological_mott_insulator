@@ -1,6 +1,6 @@
 ---
 
-title: MF Hamiltonian in k-space, 8-sites cell
+title: Unrestricted Hartree-Fock
 
 
 keywords: fastai
@@ -36,6 +36,12 @@ nb_path: "nbs/01_Restricted.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mean-field-Hamiltonian-in-k-space,-8-sites-cell">Mean-field Hamiltonian in k-space, 8-sites cell<a class="anchor-link" href="#Mean-field-Hamiltonian-in-k-space,-8-sites-cell"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -47,7 +53,7 @@ nb_path: "nbs/01_Restricted.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="checkerboardeightsites" class="doc_header"><code>class</code> <code>checkerboardeightsites</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/restricted.py#L19" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>checkerboardeightsites</code>()</p>
+<h2 id="checkerboard_eight_sites" class="doc_header"><code>class</code> <code>checkerboard_eight_sites</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/restricted.py#L19" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>checkerboard_eight_sites</code>()</p>
 </blockquote>
 
 </div>
@@ -71,7 +77,7 @@ nb_path: "nbs/01_Restricted.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="mfcheckb" class="doc_header"><code>class</code> <code>mfcheckb</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/restricted.py#L393" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>mfcheckb</code>(<strong><code>itermin</code></strong>=<em><code>20</code></em>, <strong><code>itermax</code></strong>=<em><code>700</code></em>, <strong><code>kgridsize</code></strong>=<em><code>10</code></em>, <strong><code>Vgrid</code></strong>=<em><code>5</code></em>, <strong><code>beta</code></strong>=<em><code>100</code></em>, <strong><code>corrm</code></strong>=<em><code>'comp'</code></em>, <strong><code>rydberg</code></strong>=<em><code>False</code></em>, <strong><code>storepkl</code></strong>=<em><code>False</code></em>) :: <a href="/topological_mott_insulator/Restricted.html#checkerboardeightsites"><code>checkerboardeightsites</code></a></p>
+<h2 id="mean_field_analysis" class="doc_header"><code>class</code> <code>mean_field_analysis</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/restricted.py#L393" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>mean_field_analysis</code>(<strong><code>itermin</code></strong>=<em><code>20</code></em>, <strong><code>itermax</code></strong>=<em><code>700</code></em>, <strong><code>kgridsize</code></strong>=<em><code>10</code></em>, <strong><code>Vgrid</code></strong>=<em><code>5</code></em>, <strong><code>beta</code></strong>=<em><code>100</code></em>, <strong><code>corrm</code></strong>=<em><code>'comp'</code></em>, <strong><code>rydberg</code></strong>=<em><code>False</code></em>, <strong><code>storepkl</code></strong>=<em><code>False</code></em>) :: <a href="/topological_mott_insulator/Restricted.html#checkerboard_eight_sites"><code>checkerboard_eight_sites</code></a></p>
 </blockquote>
 
 </div>
@@ -108,18 +114,20 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Methods">Methods<a class="anchor-link" href="#Methods"> </a></h2><table>
+<h2 id="Class">Class<a class="anchor-link" href="#Class"> </a></h2><table>
 <thead><tr>
-<th>Attribute</th>
-<th>type</th>
+<th>Name</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>tre</code></td>
-<td>float</td>
-<td>Threshold of the Fermi weights to be considered non-zero Default value: 1E-10</td>
+<td><a href="/topological_mott_insulator/Restricted.html#checkerboard_eight_sites"><code>checkerboard_eight_sites</code></a></td>
+<td>Checkerboard lattice model</td>
+</tr>
+<tr>
+<td><a href="/topological_mott_insulator/Restricted.html#mean_field_analysis"><code>mean_field_analysis</code></a></td>
+<td>Run and plot methods</td>
 </tr>
 </tbody>
 </table>
@@ -129,61 +137,64 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="---Parameters">   Parameters<a class="anchor-link" href="#---Parameters"> </a></h2><table>
+<h2 id="Methods">Methods<a class="anchor-link" href="#Methods"> </a></h2><table>
 <thead><tr>
-<th>Parameters</th>
-<th>type</th>
+<th>Method</th>
+<th>class</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>nx</code>, <code>ny</code></td>
-<td>int</td>
-<td>Number of unit cells in the x and y direction</td>
+<td><code>__init__</code></td>
+<td>mfc</td>
+<td>Initialize Hamiltonian related parameters, then call checkerboard_eight_sites.<strong>init</strong>()</td>
 </tr>
 <tr>
-<td><code>t0</code>, <code>jax</code>, <code>jay</code>, <code>jbx</code>, <br> <code>jby</code>, <code>v1</code>, <code>v2</code>, <code>v3</code>, <code>v4</code></td>
-<td>float</td>
-<td>Parameters of the Hamiltonian</td>
+<td><code>__init__</code></td>
+<td>ces</td>
+<td>Initialize lattice related parameters</td>
 </tr>
 <tr>
-<td><code>beta</code></td>
-<td>float</td>
-<td>Inverse temperature</td>
+<td><code>prepare_run</code></td>
+<td>mfc</td>
+<td>Update the set of $V_i$, define Hamiltonian accordingly, initialize random correlation matrix, set and initialize other run parameters like k-space eigen-vectors and eigen-values (bands)</td>
 </tr>
 <tr>
-<td><code>phix</code>, <code>phiy</code></td>
-<td>complex</td>
-<td>phases in x and y hoppings for twisted boundary conditions</td>
+<td><code>fixed_point_method</code></td>
+<td>ces</td>
+<td>Fixed-point search routine</td>
 </tr>
 <tr>
-<td><code>cell_filling</code></td>
-<td>float</td>
-<td>Number of particles per 2-site unit cell.<br> The total number of particles is then computed as <code>cell_filling</code>*<code>L</code>.</td>
+<td><code>get_hamiltonian</code></td>
+<td>ces</td>
+<td>Define the mean-field Hamiltonian, dependent on mean-field coefficients given by the correlation matrix</td>
 </tr>
 <tr>
-<td><code>cylinder</code></td>
-<td>bool</td>
-<td>Wheter to use a cylinder geometry with open bondary conditions in the x direction.</td>
+<td><code>diagH</code></td>
+<td>ces</td>
+<td>Diagonalize the Hamiltonian for each $k$-vector in the Brilluoin zone. Obtain new k-space eigen-vectors and eigen-values (bands)</td>
 </tr>
 <tr>
-<td><code>field</code></td>
-<td>float</td>
-<td>Strength of the imaginary part of the hopping parameter across plaquettes of nearest-neighbors, which breaks time-reversal symmetry.</td>
+<td><code>get_correlation_tensors</code></td>
+<td>ces</td>
+<td>Calculate correlation matrix</td>
 </tr>
 <tr>
-<td><code>induce</code></td>
-<td>str</td>
-<td>Spatial pattern of the guiding field, whose strenght is determined by the <code>field</code> parameter.</td>
+<td><code>get_FE</code></td>
+<td>ces</td>
+<td>Calculate free energy</td>
 </tr>
 <tr>
-<td><code>border</code></td>
-<td>bool</td>
-<td>Wheter to include on-site chemical potentials at the open borders to avoid charge orders induced by the sharp trunctation of repulsive interactions. This parameter is irrelevant if <code>cylinder</code> is set to False.</td>
+<td><code>check_convergence</code></td>
+<td>ces</td>
+<td>Stop the fixed-point search i) after <code>itermax</code> iterations or ii) after <code>itermin</code> iterations and if iia) the largest mean-field parameter does not converge but oscillates between $\pm n$ for <code>consecutive_oscillations</code> times, indicating a metallic phase (discard run) or iib) if both the free energy gradient and the correlation matrix gradient converged below <code>convergence_thresh_cFE</code> or the inverse ratios between the largest mean-field parameter and all others converged below <code>convergence_thresh_mfops</code></td>
 </tr>
 </tbody>
 </table>
+<hr>
+<p>ces = checkerboard_eight_sites</p>
+<p>mfc = mfcheckb</p>
 
 </div>
 </div>
@@ -199,119 +210,49 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 </thead>
 <tbody>
 <tr>
-<td><code>tre</code></td>
-<td>float</td>
-<td>Threshold of the Fermi weights to be considered non-zero Default value: 1E-10</td>
+<td><code>cellBravaisvecs</code></td>
+<td>int nparray</td>
+<td>Bravais vectors of the unit cell</td>
 </tr>
 <tr>
 <td><code>iterations</code></td>
 <td>int</td>
-<td>Counts the number of iterations performed by the self-consistent algorithm.</td>
+<td>Counts iterations</td>
 </tr>
 <tr>
-<td><code>etas</code></td>
-<td>array of int</td>
-<td>Stores the values of the self-consistent update parameter eta used in the iterations.</td>
-</tr>
-<tr>
-<td><code>L</code></td>
+<td><code>itermin</code></td>
 <td>int</td>
-<td>Number of two-site unit cells</td>
+<td>Minimun number of iterations</td>
 </tr>
 <tr>
-<td><code>L_sites</code></td>
+<td><code>itermax</code></td>
 <td>int</td>
-<td>Number of physical sites</td>
+<td>Maximun number of iterations</td>
 </tr>
 <tr>
-<td><code>filling</code></td>
+<td><code>ncs</code></td>
 <td>int</td>
-<td>Number of particles</td>
+<td>Minimum number of neighboring cells (+1) needed to achieve full lattice tiling</td>
 </tr>
 <tr>
-<td><code>mu</code></td>
-<td>float</td>
-<td>Value of the chemical potential in the current state of the iteration algorithm</td>
+<td><code>nsites</code></td>
+<td>int</td>
+<td>Number of lattice unit cell sites</td>
 </tr>
 <tr>
-<td><code>energies</code></td>
-<td>array of float</td>
-<td>Self-consistent single-particle energies in the current state of the algorithm</td>
+<td><code>site_coos</code></td>
+<td>int nparray</td>
+<td>Sites coordinates in the lattice unit cell</td>
 </tr>
 <tr>
-<td><code>energies_fermi</code></td>
-<td>array of float</td>
-<td>Self-consistent single-particle energies of the states with finite occupation in the current state of the algorithm</td>
+<td><code>Vsarray</code></td>
+<td>float nparray</td>
+<td>Interaction amplitudes, <code>nV</code> terms including $V_0$</td>
 </tr>
 <tr>
-<td><code>fermi_weigths</code></td>
-<td>array of float</td>
-<td>Fermi occupation probabilities for each of the single-particle energies in <code>energies</code></td>
-</tr>
-<tr>
-<td><code>total_energy</code></td>
-<td>float</td>
-<td>Expectation value of the Hamiltonian per unit cell in the current state of the algorithm</td>
-</tr>
-<tr>
-<td><code>states</code></td>
-<td>array of arrays of float</td>
-<td>Matrix containing the single-particle eigenstates in the occupation basis, in the current state of the algorithm. They are ordered according to <code>energies</code>.</td>
-</tr>
-<tr>
-<td><code>states_fermi</code></td>
-<td>array of arrays of float</td>
-<td>Matrix containing the single-particle eigenstates with finite occupation in the occupation basis, in the current state of the algorithm. They are ordered according to <code>energies_fermi</code>.</td>
-</tr>
-<tr>
-<td><code>J_nn</code>, <code>J_ax</code>, <code>J_ay</code>, <code>J_bx</code>, <code>J_by</code></td>
-<td>array of int tuples</td>
-<td>Each element of these arrays is a tuple with the coordinates of different types of neighbors, e.g., <code>J_nn</code> contains the tuples with the coordinates of all nearest-neighbors. The coordinates correspond to the one-dimensional index of the flattened two-dimensional lattice.</td>
-</tr>
-<tr>
-<td><code>J_nn_1</code>, <code>J_nn_2</code></td>
-<td>array of int tuples</td>
-<td>Decomposition of <code>J_nn</code> into upper diagonal and lower diagonal nearest-neighbors. This distintcion is useful for some vectorized operations.</td>
-</tr>
-<tr>
-<td><code>J_nn_tw</code>, <code>J_ax_tw</code>, <code>J_ay_tw</code>, <code>J_bx_tw</code>, <code>J_by_tw</code></td>
-<td>array of complex floats</td>
-<td>Contains the hopping phases for each tuple of neighbors needed for twisted boundary conditions.</td>
-</tr>
-<tr>
-<td><code>mfden</code></td>
-<td>array of floats</td>
-<td>Expected value of the Hartree-Fock self-consistent local occupation in the current step of the algorithm</td>
-</tr>
-<tr>
-<td><code>mfhop_nn</code>, <code>mfhop_ax</code>, <code>mfhop_ay</code>, <code>mfhop_bx</code>, <code>mfhop_by</code></td>
-<td>array of complex floats</td>
-<td>Expected value of the Hartree-Fock self-consistent hoppings in the current step of the algorithm</td>
-</tr>
-<tr>
-<td><code>mfden_0</code></td>
-<td>array of floats</td>
-<td>Initial value of the Hartree-Fock local occupation</td>
-</tr>
-<tr>
-<td><code>mfhop_nn_0</code>, <code>mfhop_ax_0</code>, <code>mfhop_ay_0</code>, <code>mfhop_bx_0</code>, <code>mfhop_by_0</code></td>
-<td>array of complex floats</td>
-<td>Initial value of the Hartree-Fock hoppings</td>
-</tr>
-<tr>
-<td><code>pos</code></td>
-<td>array of int tuples</td>
-<td>X and Y coordinates of each lattice site</td>
-</tr>
-<tr>
-<td><code>H</code></td>
-<td><code>L_sites</code> x <code>L_sites</code> hermitian matrix of complex floats</td>
-<td>Self-consistent Hartree-Fock Hamiltonian in the occupation basis</td>
-</tr>
-<tr>
-<td><code>c_mark</code></td>
-<td>array of complex float</td>
-<td>Value of the Local Chern Marker (erase) on each unit cell of the lattice.</td>
+<td><code>xiQAH_loop_mask</code></td>
+<td>int nparray</td>
+<td>Coordinates of the square plaquette over which $\xi_{\textrm{QAH}}$ is calculated</td>
 </tr>
 </tbody>
 </table>

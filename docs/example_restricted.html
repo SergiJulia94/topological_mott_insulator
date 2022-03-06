@@ -57,7 +57,7 @@ For these values, the system is expected to be, respectively, in a site-nematic 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 <span class="n">V1</span><span class="p">,</span><span class="n">V2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span><span class="mi">1</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">prepare_run</span><span class="p">(</span><span class="n">V1</span><span class="o">=</span><span class="n">V1</span><span class="p">,</span><span class="n">V2</span><span class="o">=</span><span class="n">V2</span><span class="p">)</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">fixed_point_method</span><span class="p">()</span>
@@ -120,7 +120,7 @@ xiQAH  0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 <span class="n">V1</span><span class="p">,</span><span class="n">V2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="mi">4</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">prepare_run</span><span class="p">(</span><span class="n">V1</span><span class="o">=</span><span class="n">V1</span><span class="p">,</span><span class="n">V2</span><span class="o">=</span><span class="n">V2</span><span class="p">)</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">fixed_point_method</span><span class="p">()</span>
@@ -175,7 +175,7 @@ xiQAH  0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 <span class="n">V1</span><span class="p">,</span><span class="n">V2</span> <span class="o">=</span> <span class="mf">2.4</span><span class="p">,</span><span class="mf">1.6</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">prepare_run</span><span class="p">(</span><span class="n">V1</span><span class="o">=</span><span class="n">V1</span><span class="p">,</span><span class="n">V2</span><span class="o">=</span><span class="n">V2</span><span class="p">)</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">fixed_point_method</span><span class="p">()</span>
@@ -230,7 +230,7 @@ xiQAH  0.06781430129528668
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 <span class="n">V1</span><span class="p">,</span><span class="n">V2</span> <span class="o">=</span> <span class="mf">2.4</span><span class="p">,</span><span class="mf">1.6</span>
 <span class="n">MyCl</span><span class="o">.</span><span class="n">single_run</span><span class="p">(</span><span class="n">V1</span><span class="o">=</span><span class="n">V1</span><span class="p">,</span><span class="n">V2</span><span class="o">=</span><span class="n">V2</span><span class="p">)</span>
 </pre></div>
@@ -295,7 +295,7 @@ xiQAH  0.06784365449749535
 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
 <span class="n">V1V2region</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 
-<span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 
 <span class="n">MyCl</span><span class="o">.</span><span class="n">prepare_grid_run</span><span class="p">(</span><span class="n">V3</span><span class="o">=</span><span class="n">V3</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">Vgrid</span><span class="o">=</span><span class="n">Vgrid</span><span class="p">,</span> <span class="n">V1V2region</span><span class="o">=</span><span class="n">V1V2region</span><span class="p">)</span>
 <span class="n">Vsarray_pool</span><span class="o">=</span><span class="n">MyCl</span><span class="o">.</span><span class="n">get_pool</span><span class="p">()</span>
@@ -377,7 +377,7 @@ $\textrm{MyCl.plot_phasediag_fixedV3(figsize=4, markersize=500).show()}$</p>
 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
 <span class="n">V1V2region</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 
-<span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 
 <span class="n">MyCl</span><span class="o">.</span><span class="n">prepare_grid_run</span><span class="p">(</span><span class="n">V3</span><span class="o">=</span><span class="n">V3</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">Vgrid</span><span class="o">=</span><span class="n">Vgrid</span><span class="p">,</span> <span class="n">V1V2region</span><span class="o">=</span><span class="n">V1V2region</span><span class="p">)</span>
 <span class="n">Vsarray_pool</span><span class="o">=</span><span class="n">MyCl</span><span class="o">.</span><span class="n">get_pool</span><span class="p">()</span>
@@ -449,7 +449,7 @@ $\textrm{MyCl.plot_phasediag_fixedV3(figsize=4, markersize=500).show()}$</p>
 <span class="n">V1V2region</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="n">rydberg</span><span class="o">=</span><span class="kc">True</span>
 
-<span class="n">MyCl</span> <span class="o">=</span> <span class="n">mfcheckb</span><span class="p">()</span>
+<span class="n">MyCl</span> <span class="o">=</span> <span class="n">mean_field_analysis</span><span class="p">()</span>
 
 <span class="n">MyCl</span><span class="o">.</span><span class="n">prepare_grid_run</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">Vgrid</span><span class="o">=</span><span class="n">Vgrid</span><span class="p">,</span> <span class="n">V1V2region</span><span class="o">=</span><span class="n">V1V2region</span><span class="p">,</span> <span class="n">rydberg</span><span class="o">=</span><span class="n">rydberg</span><span class="p">)</span>
 <span class="n">Vsarray_pool</span><span class="o">=</span><span class="n">MyCl</span><span class="o">.</span><span class="n">get_pool</span><span class="p">(</span><span class="n">rydberg</span><span class="o">=</span><span class="n">rydberg</span><span class="p">)</span>
