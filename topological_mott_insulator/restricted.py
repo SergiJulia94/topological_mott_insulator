@@ -390,6 +390,9 @@ class checkerboard_eight_sites():
         return
 
 
+
+
+# Cell
 class mean_field_analysis(checkerboard_eight_sites):
     def __init__(self, itermin=20, itermax=700, kgridsize=10, Vgrid=5,
                  beta=100, corrm='comp', rydberg=False):

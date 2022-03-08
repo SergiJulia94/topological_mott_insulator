@@ -6,8 +6,8 @@ title: Restricted Hartree-Fock
 keywords: fastai
 sidebar: home_sidebar
 
-
-
+summary: "API details"
+description: "API details"
 nb_path: "nbs/01_Restricted.ipynb"
 ---
 <!--
@@ -36,6 +36,27 @@ nb_path: "nbs/01_Restricted.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mean-field-Hamiltonian-in-k-space,-8-sites-cell">Mean-field Hamiltonian in k-space, 8-sites cell<a class="anchor-link" href="#Mean-field-Hamiltonian-in-k-space,-8-sites-cell"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This part of the library focuses on solving the system Hamiltonian
+\begin{align}
+H = &amp;-t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.) 
+        +J^A_y\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)\\
+        &amp;+J^B_x\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +J^B_y\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.) 
+        +V_1\sum_{&lt;ij&gt;}n_in_j+V_2\sum_{&lt;&lt;ij&gt;&gt;}n_in_j\\
+        &amp;+V_3\sum_{&lt;ij&gt;_3}n_in_j+V_4\sum_{&lt;ij&gt;_4}n_in_j
+\end{align}<br>
+self-consistently with a restricted Hartree fock ansatz on the 8-site unit cell.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -64,67 +85,12 @@ nb_path: "nbs/01_Restricted.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="mean_field_analysis" class="doc_header"><code>class</code> <code>mean_field_analysis</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/restricted.py#L393" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>mean_field_analysis</code>(<strong><code>itermin</code></strong>=<em><code>20</code></em>, <strong><code>itermax</code></strong>=<em><code>700</code></em>, <strong><code>kgridsize</code></strong>=<em><code>10</code></em>, <strong><code>Vgrid</code></strong>=<em><code>5</code></em>, <strong><code>beta</code></strong>=<em><code>100</code></em>, <strong><code>corrm</code></strong>=<em><code>'comp'</code></em>, <strong><code>rydberg</code></strong>=<em><code>False</code></em>) :: <a href="/topological_mott_insulator/Restricted.html#checkerboard_eight_sites"><code>checkerboard_eight_sites</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 </div>
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Restricted Hartree-Fock class to solve self-consistently the system Hamiltonian.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-$$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\dagger c_{i+x} + H.c.) 
-        +J^A_y\sum_{i\in A}(c_{i}^\dagger c_{i+y} + H.c.)+\\+J^B_x\sum_{i\in B}(c_{i}^\dagger c_{i+x} + H.c.) +J^B_y\sum_{i\in B}(c_{i}^\dagger c_{i+y} + H.c.) 
-        +V_1\sum_{&lt;ij&gt;}n_in_j+V_2\sum_{&lt;&lt;ij&gt;&gt;}n_in_j+\\+V_3\sum_{&lt;ij&gt;_3}n_in_j+V_4\sum_{&lt;ij&gt;_4}n_in_j$$
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Class">Class<a class="anchor-link" href="#Class"> </a></h2><table>
-<thead><tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="/topological_mott_insulator/Restricted.html#checkerboard_eight_sites"><code>checkerboard_eight_sites</code></a></td>
-<td>Checkerboard lattice model</td>
-</tr>
-<tr>
-<td><a href="/topological_mott_insulator/Restricted.html#mean_field_analysis"><code>mean_field_analysis</code></a></td>
-<td>Run and plot methods</td>
-</tr>
-</tbody>
-</table>
+<p>Class defining the checkerboard lattice model.</p>
 
 </div>
 </div>
@@ -134,61 +100,40 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 <h2 id="Methods">Methods<a class="anchor-link" href="#Methods"> </a></h2><table>
 <thead><tr>
 <th>Method</th>
-<th>class</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>__init__</code></td>
-<td>mfc</td>
-<td>Initialize Hamiltonian related parameters, then call checkerboard_eight_sites.<strong>init</strong>()</td>
-</tr>
-<tr>
-<td><code>__init__</code></td>
-<td>ces</td>
 <td>Initialize lattice related parameters</td>
 </tr>
 <tr>
-<td><code>prepare_run</code></td>
-<td>mfc</td>
-<td>Update the set of $V_i$, define Hamiltonian accordingly, initialize random correlation matrix, set and initialize other run parameters like k-space eigen-vectors and eigen-values (bands)</td>
-</tr>
-<tr>
 <td><code>fixed_point_method</code></td>
-<td>ces</td>
 <td>Fixed-point search routine</td>
 </tr>
 <tr>
 <td><code>get_hamiltonian</code></td>
-<td>ces</td>
 <td>Define the mean-field Hamiltonian, dependent on mean-field coefficients given by the correlation matrix</td>
 </tr>
 <tr>
 <td><code>diagH</code></td>
-<td>ces</td>
 <td>Diagonalize the Hamiltonian for each $k$-vector in the Brilluoin zone. Obtain new k-space eigen-vectors and eigen-values (bands)</td>
 </tr>
 <tr>
 <td><code>get_correlation_tensors</code></td>
-<td>ces</td>
 <td>Calculate correlation matrix</td>
 </tr>
 <tr>
 <td><code>get_FE</code></td>
-<td>ces</td>
 <td>Calculate free energy</td>
 </tr>
 <tr>
 <td><code>check_convergence</code></td>
-<td>ces</td>
 <td>Stop the fixed-point search i) after <code>itermax</code> iterations or ii) after <code>itermin</code> iterations and if iia) the largest mean-field parameter does not converge but oscillates between $\pm n$ for <code>consecutive_oscillations</code> times, indicating a metallic phase (discard run) or iib) if both the free energy gradient and the correlation matrix gradient converged below <code>convergence_thresh_cFE</code> or the inverse ratios between the largest mean-field parameter and all others converged below <code>convergence_thresh_mfops</code></td>
 </tr>
 </tbody>
 </table>
-<hr>
-<p>ces = checkerboard_eight_sites</p>
-<p>mfc = mfcheckb</p>
 
 </div>
 </div>
@@ -247,6 +192,67 @@ $$H = -t_0\sum_{&lt;ij&gt;}(c_i^\dagger c_j + H.c.)+J^A_x\sum_{i\in A}(c_{i}^\da
 <td><code>xiQAH_loop_mask</code></td>
 <td>int nparray</td>
 <td>Coordinates of the square plaquette over which $\xi_{\textrm{QAH}}$ is calculated</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="mean_field_analysis" class="doc_header"><code>class</code> <code>mean_field_analysis</code><a href="https://github.com/SergiJulia94/topological_mott_insulator/tree/master/topological_mott_insulator/restricted.py#L396" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>mean_field_analysis</code>(<strong><code>itermin</code></strong>=<em><code>20</code></em>, <strong><code>itermax</code></strong>=<em><code>700</code></em>, <strong><code>kgridsize</code></strong>=<em><code>10</code></em>, <strong><code>Vgrid</code></strong>=<em><code>5</code></em>, <strong><code>beta</code></strong>=<em><code>100</code></em>, <strong><code>corrm</code></strong>=<em><code>'comp'</code></em>, <strong><code>rydberg</code></strong>=<em><code>False</code></em>) :: <a href="/topological_mott_insulator/Restricted.html#checkerboard_eight_sites"><code>checkerboard_eight_sites</code></a></p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Perform the mean-field analysis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Methods">Methods<a class="anchor-link" href="#Methods"> </a></h2><table>
+<thead><tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>__init__</code></td>
+<td>Initialize Hamiltonian related parameters, then call checkerboard_eight_sites.<strong>init</strong>()</td>
+</tr>
+<tr>
+<td><code>prepare_run</code></td>
+<td>Update the set of $V_i$, define Hamiltonian accordingly, initialize random correlation matrix, set and initialize other run parameters like k-space eigen-vectors and eigen-values (bands)</td>
 </tr>
 </tbody>
 </table>
